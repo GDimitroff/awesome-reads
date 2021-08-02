@@ -11,6 +11,7 @@ import { ShowcaseComponent } from './home/showcase/showcase.component';
 import { BoxesComponent } from './home/boxes/boxes.component';
 import { SectionsComponent } from './home/sections/sections.component';
 import { FaqComponent } from './home/faq/faq.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { FaqComponent } from './home/faq/faq.component';
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FontAwesomeModule
     ],
     providers: [],
     bootstrap: [AppComponent]

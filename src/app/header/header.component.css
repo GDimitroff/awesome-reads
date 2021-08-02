@@ -1,0 +1,7 @@
+.navbar-brand {
+    font-size: 28px;
+}
+
+a.navbar-brand > fa-icon {
+    vertical-align: text-top;
+}
