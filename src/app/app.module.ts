@@ -10,6 +10,7 @@ import { NewsletterComponent } from './home/newsletter/newsletter.component';
 import { ShowcaseComponent } from './home/showcase/showcase.component';
 import { BoxesComponent } from './home/boxes/boxes.component';
 import { SectionsComponent } from './home/sections/sections.component';
+import { FaqComponent } from './home/faq/faq.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { SectionsComponent } from './home/sections/sections.component';
         NewsletterComponent,
         ShowcaseComponent,
         BoxesComponent,
-        SectionsComponent
+        SectionsComponent,
+        FaqComponent
     ],
     imports: [
         BrowserModule,
