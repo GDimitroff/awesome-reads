@@ -8,6 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { NewsletterComponent } from './home/newsletter/newsletter.component';
 import { ShowcaseComponent } from './home/showcase/showcase.component';
+import { BoxesComponent } from './home/boxes/boxes.component';
+import { SectionsComponent } from './home/sections/sections.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +18,9 @@ import { ShowcaseComponent } from './home/showcase/showcase.component';
         FooterComponent,
         HomeComponent,
         NewsletterComponent,
-        ShowcaseComponent
+        ShowcaseComponent,
+        BoxesComponent,
+        SectionsComponent
     ],
     imports: [
         BrowserModule,
