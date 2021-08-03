@@ -19,6 +19,7 @@ import { BookDetailsComponent } from './books/book-details/book-details.componen
 import { BookItemComponent } from './books/book-list/book-item/book-item.component';
 import { ReadingListComponent } from './reading-list/reading-list.component';
 import { ReadingListEditComponent } from './reading-list/reading-list-edit/reading-list-edit.component';
+import { BookService } from './books/book.service';
 
 @NgModule({
     declarations: [
@@ -43,7 +44,9 @@ import { ReadingListEditComponent } from './reading-list/reading-list-edit/readi
         FontAwesomeModule,
         AppRoutingModule
     ],
-    providers: [],
+    providers: [
+        BookService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
