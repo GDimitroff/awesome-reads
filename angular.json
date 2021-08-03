@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "books": {
+        "awesome-reads": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:application": {
@@ -17,7 +17,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/books",
+                        "outputPath": "dist/awesome-reads",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "books:build:production"
+                            "browserTarget": "awesome-reads:build:production"
                         },
                         "development": {
-                            "browserTarget": "books:build:development"
+                            "browserTarget": "awesome-reads:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "books:build"
+                        "browserTarget": "awesome-reads:build"
                     }
                 },
                 "test": {
@@ -106,5 +106,5 @@
             }
         }
     },
-    "defaultProject": "books"
+    "defaultProject": "awesome-reads"
 }
