@@ -1,15 +1,12 @@
-<a [routerLink]="[index]" routerLinkActive="active" class="list-group-item list-group-item-action p-2">
-    <div class="row">
-        <div class="col-md-2">
-            <img src="{{ book.imageUrl }}"
-                alt="{{ book.title }}" style="height: 150px; width: 100px;">
-        </div>
-        <div class="col-md-10">
-            <h5>{{ book.title }}</h5>
-            <p class="lead">{{ book.author }}</p>
-            <p>
-                {{ book.description }}
-            </p>
-        </div>
+<div [routerLink]="[index]" routerLinkActive="active"
+    class="row g-0 border rounded overflow-hidden flex-md-row  mb-2 shadow-sm h-md-250 position-relative"
+    style="cursor: pointer;">
+    <div class="col-md-3 d-flex d-none d-lg-block flex-wrap align-items-center">
+        <img src="{{ book.imageUrl }}" style="max-height: 100%; width: 120px;" alt="">
     </div>
-</a>
+    <div class="col-md-9 p-3 d-flex flex-column position-static">
+        <h3>{{ book.title }}</h3>
+        <strong class="d-inline-block mb-2 text-dark">{{ book.author }}</strong>
+        <p class="card-text mb-auto">{{ book.description.slice(0, 150) }}</p>
+    </div>
+</div>
