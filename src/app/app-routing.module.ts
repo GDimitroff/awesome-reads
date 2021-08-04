@@ -6,6 +6,7 @@ import { BooksComponent } from './books/books.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { BookStartComponent } from './books/book-start/book-start.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
+import { QuotesComponent } from './quotes/quotes.component';
 
 const routes: Routes = [
     {
@@ -38,6 +39,10 @@ const routes: Routes = [
                 component: BookEditComponent
             }
         ]
+    },
+    {
+        path: 'quotes',
+        component: QuotesComponent
     }
 ];
 
