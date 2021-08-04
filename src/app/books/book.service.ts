@@ -14,4 +14,8 @@ export class BookService {
     getBooks(): Book[] {
         return this.books.slice();
     }
+
+    getBookById(id: number): Book {
+        return this.books[id];
+    }
 }

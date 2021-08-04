@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Book } from '../book.model';
+import { BookService } from '../book.service';
 
 @Component({
     selector: 'app-book-details',
@@ -8,12 +10,16 @@ import { Book } from '../book.model';
     styleUrls: ['./book-details.component.css']
 })
 export class BookDetailsComponent implements OnInit {
-    book = new Book('Matrix', 'Washovski', 500, 'Enter the matrix!', 'https://upload.wikimedia.org/wikipedia/commons/9/9b/The.Matrix.glmatrix.2.png');
+    book!: Book;
     id!: number;
 
-    constructor() { }
+    constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit(): void {
+        this.route.params.subscribe((params: Params) => {
+            this.id = Number(params['id']);
+            this.book = this.bookService.getBookById(this.id);
+        });
     }
 
 }

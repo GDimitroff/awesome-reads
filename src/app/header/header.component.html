@@ -1,6 +1,6 @@
 <nav class="nav navbar navbar-expand-lg bg-dark navbar-dark py-3">
     <div class="container">
-        <a href="#" class="navbar-brand"><fa-icon [icon]="faBookOpen"></fa-icon> awesome<span class="text-warning">reads</span></a>
+        <a routerLink="/" class="navbar-brand"><fa-icon [icon]="faBookOpen"></fa-icon> awesome<span class="text-warning">reads</span></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
             <span class="navbar-toggler-icon"></span>
@@ -9,13 +9,10 @@
         <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Books</a>
+                    <a routerLink="/books" class="nav-link">Books</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Reading Lists</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Quotes</a>
+                    <a routerLink="/quotes" class="nav-link">Quotes</a>
                 </li>
                 <li class="nav-item">
                     <button type="button" class="btn btn-outline-light me-2">Login</button>

@@ -15,9 +15,9 @@ import { BooksComponent } from './books/books.component';
 import { BookListComponent } from './books/book-list/book-list.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { BookItemComponent } from './books/book-list/book-item/book-item.component';
-import { ReadingListComponent } from './reading-list/reading-list.component';
-import { ReadingListEditComponent } from './reading-list/reading-list-edit/reading-list-edit.component';
 import { BookService } from './books/book.service';
+import { BookStartComponent } from './books/book-start/book-start.component';
+import { BookEditComponent } from './books/book-edit/book-edit.component';
 
 @NgModule({
     declarations: [
@@ -32,8 +32,8 @@ import { BookService } from './books/book.service';
         BookListComponent,
         BookDetailsComponent,
         BookItemComponent,
-        ReadingListComponent,
-        ReadingListEditComponent
+        BookStartComponent,
+        BookEditComponent
     ],
     imports: [
         BrowserModule,

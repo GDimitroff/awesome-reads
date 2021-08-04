@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BooksComponent } from './books/books.component';
 import { HomeComponent } from './home/home.component';
-import { ReadingListComponent } from './reading-list/reading-list.component';
+import { BooksComponent } from './books/books.component';
+import { BookDetailsComponent } from './books/book-details/book-details.component';
+import { BookStartComponent } from './books/book-start/book-start.component';
+import { BookEditComponent } from './books/book-edit/book-edit.component';
 
 const routes: Routes = [
     {
@@ -17,11 +19,25 @@ const routes: Routes = [
     },
     {
         path: 'books',
-        component: BooksComponent
-    },
-    {
-        path: 'reading-lists',
-        component: ReadingListComponent
+        component: BooksComponent,
+        children: [
+            {
+                path: '',
+                component: BookStartComponent
+            },
+            {
+                path: 'new',
+                component: BookEditComponent
+            },
+            {
+                path: ':id',
+                component: BookDetailsComponent
+            },
+            {
+                path: ':id/edit',
+                component: BookEditComponent
+            }
+        ]
     }
 ];
 
