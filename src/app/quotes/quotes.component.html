@@ -1,64 +1,19 @@
 <section class="p-5">
     <div class="container">
-        <h1 class="text-center pt-1 pb-3">My favorite quotes</h1>
-            <div class="row text-start align-items-center">
-                <div class="col-md-11">
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque maiores mollitia recusandae,
-                    explicabo odio saepe nulla ipsum soluta fuga ab quidem nobis laboriosam consequuntur.
-                    Tempora
-                    eius
-                    maiores adipisci quaerat quisquam."
-
-                    <p class="lead py-2">Frank Herbert</p>
+        <h1 class="text-center pt-1 pb-5">My favorite quotes</h1>
+        <div class="row text-start align-items-center">
+            <div class="col-md-6 text-center" *ngFor="let quote of quotes">
+                <div class="col-md-11" style="height: 130px;">
+                    "{{ quote.quote }}"
+                    <p class="lead py-2">{{ quote.author }}</p>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-1 d-none d-sm-block">
                     <a class="btn btn-danger" style="font-weight: bold;">X</a>
                 </div>
-            </div>
-            <hr>
-            <div class="row text-start align-items-center">
-                <div class="col-md-11">
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque maiores mollitia recusandae,
-                    explicabo odio saepe nulla ipsum soluta fuga ab quidem nobis laboriosam consequuntur.
-                    Tempora
-                    eius
-                    maiores adipisci quaerat quisquam."
-
-                    <p class="lead py-2">Frank Herbert</p>
-                </div>
-                <div class="col-md-1">
-                    <a class="btn btn-danger" style="font-weight: bold;">X</a>
+                <div class="py-2">
+                    <hr>
                 </div>
             </div>
-            <hr>
-            <div class="row text-start align-items-center">
-                <div class="col-md-11">
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque maiores mollitia recusandae,
-                    explicabo odio saepe nulla ipsum soluta fuga ab quidem nobis laboriosam consequuntur.
-                    Tempora
-                    eius
-                    maiores adipisci quaerat quisquam."
-
-                    <p class="lead py-2">Frank Herbert</p>
-                </div>
-                <div class="col-md-1">
-                    <a class="btn btn-danger" style="font-weight: bold;">X</a>
-                </div>
-            </div>
-            <hr>
-        <form class="py-2">
-            <h4 class="">Add new quote</h4>
-            <div class="row">
-                <div class="col-md-8 py-3">
-                    <textarea rows="4" type="password" class="form-control" id="quote" placeholder="Your quote..."></textarea>
-                </div>
-                <div class="col-md-3 py-3">
-                    <input type="text" class="form-control" id="author" placeholder="Author">
-                </div>
-                <div class="col-md-1 py-3">
-                    <button class="btn btn-success" style="font-weight: bold;">+</button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </section>
