@@ -22,7 +22,6 @@ import { BookItemComponent } from './books/book-list/book-item/book-item.compone
 import { BookStartComponent } from './books/book-start/book-start.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { QuotesComponent } from './quotes/quotes.component';
-import { QuoteEditComponent } from './quotes/quote-edit/quote-edit.component';
 
 @NgModule({
     declarations: [
@@ -39,8 +38,7 @@ import { QuoteEditComponent } from './quotes/quote-edit/quote-edit.component';
         BookItemComponent,
         BookStartComponent,
         BookEditComponent,
-        QuotesComponent,
-        QuoteEditComponent
+        QuotesComponent
     ],
     imports: [
         BrowserModule,

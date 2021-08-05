@@ -27,4 +27,12 @@ export class BookDetailsComponent implements OnInit {
         this.quoteService.addQuote(quote, author);
     }
 
+    onEditBook() {
+        this.router.navigate(['edit'], { relativeTo: this.route });
+    }
+
+    onDeleteBook() {
+        //TODO: Implement this! 
+    }
+
 }
