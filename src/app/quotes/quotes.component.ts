@@ -9,12 +9,14 @@ import { QuoteService } from './quote.service';
     styleUrls: ['./quotes.component.css']
 })
 export class QuotesComponent implements OnInit {
-    quotes!: Quote[];
+    quotes: Quote[] = [];
 
     constructor(private quoteService: QuoteService) { }
 
     ngOnInit(): void {
         this.quotes = this.quoteService.getQuotes();
+        this.quoteService.quotesChanged.subscribe((quotes: Quote[]) => {
+            this.quotes = quotes;
+        });
     }
-
 }

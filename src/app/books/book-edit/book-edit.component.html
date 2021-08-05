@@ -1,20 +1,27 @@
-<div class="row px-5">
+<div class="row px-4">
+    <h2 class="pb-2">Add new book</h2>
+    <hr>
     <form>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Image URL:</label>
-            <input type="email" class="form-control" id="exampleInputEmail1">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="title" placeholder="title">
+            <label for="title">Title</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="author" placeholder="author">
+            <label for="author">Author</label>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="description" placeholder="description" style="height: 150px"></textarea>
+            <label for="description">Description</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="imageUrl" placeholder="image path">
+            <label for="imageUrl">Image URL</label>
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <label for="quotes" class="form-label">Quotes</label>
+            <input type="text" class="form-control" id="quotes">
         </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-dark w-100">Submit</button>
     </form>
 </div>
-
-//TODO:

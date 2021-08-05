@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Book } from '../book.model';
+import { Quote } from 'src/app/quotes/quote.model';
 import { BookService } from '../book.service';
 import { QuoteService } from 'src/app/quotes/quote.service';
 
@@ -23,8 +24,14 @@ export class BookDetailsComponent implements OnInit {
         });
     }
 
-    onAddQuote(quote: string, author: string) {
-        this.quoteService.addQuote(quote, author);
+    onAddToMyQuotes(quote: string, author: string) {
+        const newQuote = new Quote(quote, author);
+        this.quoteService.addQuote(newQuote);
+    }
+
+    onAddQuoteToBook(quote: string, author: string) {
+        const newQuote = new Quote(quote, author);
+        this.bookService.addQuoteToBook(this.id, newQuote);
     }
 
     onEditBook() {
