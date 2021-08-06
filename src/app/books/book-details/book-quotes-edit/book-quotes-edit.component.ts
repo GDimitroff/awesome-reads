@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
+
 import { Book } from '../../book.model';
 
 import { BookService } from '../../book.service';
@@ -11,23 +13,23 @@ import { BookQuote } from '../book-quotes/book-quote.model';
     styleUrls: ['./book-quotes-edit.component.css']
 })
 export class BookQuotesEditComponent implements OnInit {
-    editMode = false;
-    
-    @Input() book!: Book;
-    @Input() id!: number;
+    book!: Book;
+    id!: number;
 
-    constructor(private bookService: BookService) { }
+    constructor(private bookService: BookService, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
+        this.route.params.subscribe((params: Params) => {
+            this.id = Number(params['id']);
+            this.book = this.bookService.getBookById(this.id);
+        });
     }
 
     onSubmitQuote(form: NgForm) {
-        if (this.editMode) {
-            const value = form.value;
-            const newQuote = new BookQuote(value.quoteText, this.book.author);
-            this.bookService.addQuoteToBook(this.id, newQuote);
-        }
-
+        const value = form.value;
+        const newQuote = new BookQuote(value.quoteText, this.book.author);
+        this.bookService.addQuote(this.id, newQuote);
+        form.reset();
     }
 
 }

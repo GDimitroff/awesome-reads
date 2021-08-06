@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { UserService } from 'src/app/user/user.service';
+
+import { Book } from '../../book.model';
 import { BookQuote } from './book-quote.model';
 
 @Component({
@@ -9,7 +11,7 @@ import { BookQuote } from './book-quote.model';
     styleUrls: ['./book-quotes.component.css']
 })
 export class BookQuotes implements OnInit {
-    @Input() quotes!: BookQuote[];
+    @Input() book!: Book;
 
     constructor(private userService: UserService) { }
 
@@ -17,12 +19,8 @@ export class BookQuotes implements OnInit {
 
     }
 
-    onAddToUserQuotes(quote: string, author: string) {
+    onAddQuote(quote: string, author: string) {
         const newQuote = new BookQuote(quote, author);
         this.userService.addQuote(newQuote);
-    }
-
-    onEditQuote(index: number) {
-        console.log(index);
     }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { User } from './user.model';
+import { Book } from '../books/book.model';
 import { BookQuote } from '../books/book-details/book-quotes/book-quote.model';
 
 @Injectable({
@@ -23,6 +24,10 @@ export class UserService {
 
     getUserQuotes() {
         return this.user.quotes;
+    }
+
+    addBook(book: Book): void {
+        this.user.books.push(book);
     }
 
     addQuote(quote: BookQuote) {

@@ -5,7 +5,8 @@
         Settings
     </button>
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" style="cursor: pointer;">Add to my books</a></li>
+        <li><a class="dropdown-item" style="cursor: pointer;" (click)="onAddBook()">Add to my books</a></li>
+        <li><a class="dropdown-item" style="cursor: pointer;" (click)="onNewQuote()">Add new quote</a></li>
         <li><a class="dropdown-item" style="cursor: pointer;" (click)="onEditBook()">Edit</a></li>
         <li><a class="dropdown-item" style="cursor: pointer;" (click)="onDeleteBook()">Delete</a></li>
     </ul>
@@ -16,5 +17,5 @@
 <p class="card-text px-3">{{ book.description }}</p>
 <p>Pages: {{ book.pages }}</p>
 
-<app-book-quotes [quotes]="book.quotes"></app-book-quotes>
-<app-book-quotes-edit></app-book-quotes-edit>
+<app-book-quotes [book]="book"></app-book-quotes>
+<app-book-quotes-edit *ngIf="displayNewQuote"></app-book-quotes-edit>
