@@ -1,4 +1,4 @@
-import { Quote } from "../quotes/quote.model";
+import { BookQuote } from "./book-details/book-quotes/book-quote.model";
 
 export class Book {
     public title: string;
@@ -6,9 +6,9 @@ export class Book {
     public pages: number;
     public description: string;
     public imageUrl: string;
-    public quotes: Quote[];
+    public quotes: BookQuote[];
 
-    constructor(title: string, author: string, pages: number, description: string, imageUrl: string, quotes: Quote[]) {
+    constructor(title: string, author: string, pages: number, description: string, imageUrl: string, quotes: BookQuote[]) {
         this.title = title;
         this.author = author;
         this.pages = pages;

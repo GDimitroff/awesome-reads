@@ -1,30 +1,20 @@
 <img src="{{ book.imageUrl }}" style="height: 450px; width: 300px; border: 2px solid rgb(179, 175, 175);" alt="">
+
+<div class="col dropdown p-3">
+    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+        Settings
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" style="cursor: pointer;">Add to my books</a></li>
+        <li><a class="dropdown-item" style="cursor: pointer;" (click)="onEditBook()">Edit</a></li>
+        <li><a class="dropdown-item" style="cursor: pointer;" (click)="onDeleteBook()">Delete</a></li>
+    </ul>
+</div>
+
 <h1>{{ book.title }}</h1>
 <p class="lead">{{ book.author }}</p>
 <p class="card-text px-3">{{ book.description }}</p>
 <p>Pages: {{ book.pages }}</p>
-<h3>Quotes from this book</h3>
-<div class="row pt-2">
-    <div class="col-xs-12" *ngFor="let quote of book.quotes">
-        <div class="row text-start px-3 py-2 align-items-center">
-            <div class="col-md-10">
-                "{{ quote.quote }}"
-            </div>
-            <div class="col-md-2 text-center py-3">
-                <a class="btn btn-success btn-sm me-1 mb-1" style="font-weight: bold;"
-                    (click)="onAddToMyQuotes(quote.quote, quote.author)">+</a>
-                <a class="btn btn-danger btn-sm me-1 mb-1" style="font-weight: bold;">X</a>
-            </div>
-        </div>
-        <hr>
-    </div>
-</div>
 
-<!-- TODO: -->
-<input type="text" name="quote" id="quote" #quoteInput>
-<button type="button"(click)="onAddQuoteToBook(quoteInput.value, book.author)">Add</button>
-
-<div>
-    <button class="btn btn-outline-dark me-2" type="button" (click)="onEditBook()">Edit</button>
-    <button class="btn btn-danger me-2" type="button" (click)="onDeleteBook()">Delete</button>
-</div>
+<app-book-quotes [quotes]="book.quotes"></app-book-quotes>
+<app-book-quotes-edit></app-book-quotes-edit>

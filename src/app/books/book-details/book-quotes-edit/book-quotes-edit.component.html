@@ -1,0 +1,9 @@
+<form (ngSubmit)="onSubmitQuote(f)" #f="ngForm" class="px-3">
+    <div class="form-floating mb-3">
+        <textarea class="form-control" id="quoteText" placeholder="quote" style="height: 100px" name="quoteText" ngModel
+            required minlength="20">
+        </textarea>
+        <label for="quoteText">Enter new quote...</label>
+    </div>
+    <button type="submit" class="btn btn-dark w-100" [disabled]="!f.valid">Add new quote to the book</button>
+</form>

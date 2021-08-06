@@ -1,9 +1,10 @@
 <section class="p-5">
+    <h1>MY PROFILE</h1>
     <div class="container">
         <h1 class="text-center pt-1 pb-5">My favorite quotes</h1>
         <hr>
         <div class="row text-start align-items-center">
-            <div class="col-md-6 text-center" *ngFor="let quote of quotes">
+            <div class="col-md-6 text-center" *ngFor="let quote of user.quotes">
                 <div class="col-md-11" style="height: 130px;">
                     "{{ quote.quote }}"
                     <p class="lead py-2">{{ quote.author }}</p>
@@ -18,3 +19,5 @@
         </div>
     </div>
 </section>
+
+<!-- TODO: HUGE STUFF TO FIX AND IMPLEMENT HERE -->

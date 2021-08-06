@@ -1,4 +1,4 @@
-export class Quote {
+export class BookQuote {
 
     constructor(public quote: string, public author: string) { }
 

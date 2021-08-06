@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { BookService } from './books/book.service';
-import { QuoteService } from './quotes/quote.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -21,7 +20,9 @@ import { BookDetailsComponent } from './books/book-details/book-details.componen
 import { BookItemComponent } from './books/book-list/book-item/book-item.component';
 import { BookStartComponent } from './books/book-start/book-start.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
-import { QuotesComponent } from './quotes/quotes.component';
+import { BookQuotes } from './books/book-details/book-quotes/book-quotes.component';
+import { BookQuotesEditComponent } from './books/book-details/book-quotes-edit/book-quotes-edit.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,9 @@ import { QuotesComponent } from './quotes/quotes.component';
         BookItemComponent,
         BookStartComponent,
         BookEditComponent,
-        QuotesComponent
+        BookQuotes,
+        UserComponent,
+        BookQuotesEditComponent
     ],
     imports: [
         BrowserModule,
@@ -47,7 +50,7 @@ import { QuotesComponent } from './quotes/quotes.component';
         AppRoutingModule
     ],
     providers: [
-        BookService, QuoteService
+        BookService
     ],
     bootstrap: [AppComponent]
 })
