@@ -1,27 +1,53 @@
 <div class="row px-5">
-    <h2 class="pb-2">Add new book</h2>
-    <hr>
-    <form>
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-4">
+                <button type="button" class="btn btn-success me-2" type="submit" [disabled]="!bookForm.valid">Save</button>
+                <button type="button" class="btn btn-danger me-2" type="button" (click)="onCancel()">Cancel</button>
+            </div>
+            <div class="col-md-8 text-end">
+                <h2>Add new book</h2>
+            </div>
+        </div>
+        <hr>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="title" placeholder="title">
+            <input type="text" class="form-control" id="title" placeholder="title" formControlName="title">
             <label for="title">Title</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="author" placeholder="author">
+            <input type="text" class="form-control" id="author" placeholder="author" formControlName="author">
             <label for="author">Author</label>
         </div>
         <div class="form-floating mb-3">
-            <textarea class="form-control" id="description" placeholder="description" style="height: 150px"></textarea>
-            <label for="description">Description</label>
+            <input type="text" class="form-control" id="imageUrl" placeholder="image path" formControlName="imageUrl" #imageUrl>
+            <label for="imageUrl">Image URL</label>
+            <img [src]="imageUrl.value" alt="" class="img-fluid pt-2">
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="imageUrl" placeholder="image path">
-            <label for="imageUrl">Image URL</label>
+            <input type="number" class="form-control" id="pages" placeholder="Book pages" formControlName="pages">
+            <label for="pages">Pages</label>
         </div>
-        <div class="mb-3">
-            <label for="quotes" class="form-label">Quotes</label>
-            <input type="text" class="form-control" id="quotes">
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="description" placeholder="description" style="height: 150px"
+                formControlName="description"></textarea>
+            <label for="description">Description</label>
         </div>
-        <button type="button" class="btn btn-dark w-100">Submit</button>
+        <div class="mb-3" formArrayName="quotes">
+            <label for="quote">Quotes</label>
+            <div class="row pt-2 align-items-center" *ngFor="let quoteCtrl of controls; let i = index"
+                [formGroupName]="i">
+                <div class="col-md-11">
+                    <textarea class="form-control" id="quote" placeholder="Quote..." formControlName="quote"
+                        rows="5"></textarea>
+                </div>
+                <div class="col-md-1 py-3">
+                    <button type="button" class="btn btn-danger" (click)="onDeleteQuote(i)">X</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="mb-3 text-start">
+            <button type="button" class="btn btn-dark" (click)="onAddQuote()">Add quote</button>
+        </div>
     </form>
 </div>

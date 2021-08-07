@@ -23,8 +23,18 @@ export class BookService {
         return this.books.slice();
     }
 
-    getBookById(index: number): Book {
+    getBook(index: number): Book {
         return this.books[index];
+    }
+
+    addBook(book: Book): void {
+        this.books.push(book);
+        this.booksChanged.next(this.books.slice());
+    }
+
+    updateBook(index: number, updatedBook: Book): void {
+        this.books[index] = updatedBook;
+        this.booksChanged.next(this.books.slice());
     }
 
     deleteBook(index: number): void {
@@ -32,7 +42,7 @@ export class BookService {
         this.booksChanged.next(this.books.slice());
     }
 
-    addQuote(index: number, quote: BookQuote) {
+    addQuote(index: number, quote: BookQuote): void {
         this.books[index].quotes.push(quote);
         this.booksChanged.next(this.books.slice());
     }
