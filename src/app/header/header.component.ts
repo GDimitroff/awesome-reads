@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
+import { StorageService } from '../storage.service';
 
 @Component({
     selector: 'app-header',
@@ -10,9 +11,13 @@ import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
 export class HeaderComponent implements OnInit {
     faBookOpen = faBookOpen;
 
-    constructor() { }
+    constructor(private storageService: StorageService) { }
 
     ngOnInit(): void {
+    }
+
+    testFIREBASE() {
+        this.storageService.addBook();
     }
 
 }

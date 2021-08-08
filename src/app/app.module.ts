@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -23,6 +24,8 @@ import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { BookQuotes } from './books/book-details/book-quotes/book-quotes.component';
 import { BookQuotesEditComponent } from './books/book-details/book-quotes-edit/book-quotes-edit.component';
 import { UserComponent } from './user/user.component';
+import { AuthComponent } from './auth/auth.component';
+import { Loading } from 'src/shared/loading/loading.component';
 
 @NgModule({
     declarations: [
@@ -41,12 +44,15 @@ import { UserComponent } from './user/user.component';
         BookEditComponent,
         BookQuotes,
         UserComponent,
-        BookQuotesEditComponent
+        BookQuotesEditComponent,
+        AuthComponent,
+        Loading
     ],
     imports: [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
+        HttpClientModule,
         FontAwesomeModule,
         AppRoutingModule
     ],

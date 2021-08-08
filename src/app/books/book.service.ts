@@ -4,7 +4,7 @@ import { Subject } from "rxjs";
 import { BookQuote } from "./book-details/book-quotes/book-quote.model";
 import { Book } from "./book.model";
 
-Injectable()
+@Injectable()
 export class BookService {
     booksChanged = new Subject<Book[]>();
 

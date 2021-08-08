@@ -7,6 +7,7 @@ import { BookDetailsComponent } from './books/book-details/book-details.componen
 import { BookStartComponent } from './books/book-start/book-start.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { UserComponent } from './user/user.component';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
     {
@@ -43,6 +44,10 @@ const routes: Routes = [
     {
         path: 'profile',
         component: UserComponent
+    },
+    {
+        path: 'auth',
+        component: AuthComponent
     }
 ];
 
