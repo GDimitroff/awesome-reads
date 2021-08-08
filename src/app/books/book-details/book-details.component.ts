@@ -1,22 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { BookService } from '../book.service';
 import { UserService } from 'src/app/user/user.service';
 
 import { Book } from '../book.model';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
     selector: 'app-book-details',
     templateUrl: './book-details.component.html',
     styleUrls: ['./book-details.component.css']
 })
-export class BookDetailsComponent implements OnInit {
+export class BookDetailsComponent implements OnInit, OnDestroy {
+    private userSub!: Subscription;
+    isAuthenticated: boolean = false;
     displayNewQuote: boolean = false;
     book!: Book;
     id!: number;
 
-    constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router, private userService: UserService) { }
+    constructor(
+        private bookService: BookService,
+        private route: ActivatedRoute,
+        private router: Router,
+        private userService: UserService,
+        private authService: AuthService
+    ) { }
 
     ngOnInit(): void {
         this.route.params.subscribe((params: Params) => {
@@ -24,7 +34,15 @@ export class BookDetailsComponent implements OnInit {
             this.book = this.bookService.getBook(this.id);
             this.displayNewQuote = false;
         });
-        
+
+        this.userSub = this.authService.user.subscribe(user => {
+            this.isAuthenticated = !!user;
+        });
+
+    }
+
+    ngOnDestroy(): void {
+        this.userSub.unsubscribe();
     }
 
     onAddBook() {

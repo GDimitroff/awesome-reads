@@ -1,6 +1,6 @@
 <img src="{{ book.imageUrl }}" style="height: 450px; width: 300px; border: 2px solid rgb(179, 175, 175);" alt="">
 
-<div class="col dropdown p-3">
+<div class="col dropdown p-3" *ngIf="isAuthenticated">
     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">
         Settings
     </button>
@@ -17,5 +17,5 @@
 <p class="card-text px-3">{{ book.description }}</p>
 <p>Pages: {{ book.pages }}</p>
 
-<app-book-quotes [book]="book"></app-book-quotes>
+<app-book-quotes [book]="book" [isAuth]="isAuthenticated"></app-book-quotes>
 <app-book-quotes-edit *ngIf="displayNewQuote"></app-book-quotes-edit>

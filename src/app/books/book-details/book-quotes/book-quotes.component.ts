@@ -12,6 +12,7 @@ import { BookQuote } from './book-quote.model';
 })
 export class BookQuotes implements OnInit {
     @Input() book!: Book;
+    @Input() isAuth!: boolean;
 
     constructor(private userService: UserService) { }
 
