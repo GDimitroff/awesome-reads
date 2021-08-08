@@ -1,23 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
-import { StorageService } from '../storage.service';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+    private userSub!: Subscription;
+    isAuthenticated: boolean = false;
+
     faBookOpen = faBookOpen;
 
-    constructor(private storageService: StorageService) { }
+    constructor(private authService: AuthService) { }
 
     ngOnInit(): void {
+        this.userSub = this.authService.user.subscribe(user => {
+            this.isAuthenticated = !!user;
+        });
     }
 
-    testFIREBASE() {
-        this.storageService.addBook();
+    ngOnDestroy(): void {
+        this.userSub.unsubscribe();
     }
-
 }
