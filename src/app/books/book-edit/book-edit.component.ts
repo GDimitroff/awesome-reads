@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { BookService } from '../book.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-book-edit',
     templateUrl: './book-edit.component.html',
     styleUrls: ['./book-edit.component.css']
 })
-export class BookEditComponent implements OnInit {
+export class BookEditComponent implements OnInit, OnDestroy {
+    private userSub!: Subscription;
+    userId!: string;
     editMode: boolean = false;
     id!: number;
     bookForm!: FormGroup;
 
-    constructor(private route: ActivatedRoute, private bookService: BookService, private router: Router) { }
+    constructor(private route: ActivatedRoute, private bookService: BookService,
+        private router: Router, private authService: AuthService) { }
 
     ngOnInit(): void {
         this.route.params.subscribe((params: Params) => {
@@ -22,6 +27,14 @@ export class BookEditComponent implements OnInit {
             this.editMode = params['id'] != null;
             this.initForm();
         });
+
+        this.userSub = this.authService.user.subscribe(user => {
+            this.userId = user.id;
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.userSub.unsubscribe();
     }
 
     onAddQuote() {
@@ -41,10 +54,24 @@ export class BookEditComponent implements OnInit {
             this.bookService.updateBook(this.id, this.bookForm.value);
             this.router.navigate(['../'], { relativeTo: this.route });
         } else {
-            this.bookService.addBook(this.bookForm.value);
+            const newBook = {
+                title: this.bookForm.value.title,
+                author: this.bookForm.value.author,
+                pages: this.bookForm.value.pages,
+                description: this.bookForm.value.description,
+                imageUrl: this.bookForm.value.imageUrl,
+                quotes: this.bookForm.value.quotes,
+                ownerId: this.userId
+            };
 
-            const id = this.bookService.getBooks().length - 1;
-            this.router.navigate(['../', id], { relativeTo: this.route });
+            const addedBook = this.bookService.addBook(newBook);
+            console.log(addedBook)
+
+            //TODO: make request to db to get book id and do proper redirect to details page of the newly added book
+            // const id = this.bookService.getBooks().length - 1;
+            // this.router.navigate(['../', id], { relativeTo: this.route });
+
+            this.router.navigate(['../', addedBook.id], { relativeTo: this.route });
         }
     }
 
