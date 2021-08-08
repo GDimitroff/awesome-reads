@@ -8,6 +8,7 @@ import { BookStartComponent } from './books/book-start/book-start.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { UserComponent } from './user/user.component';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
     {
@@ -29,7 +30,8 @@ const routes: Routes = [
             },
             {
                 path: 'new',
-                component: BookEditComponent
+                component: BookEditComponent,
+                canActivate: [AuthGuard]
             },
             {
                 path: ':id',
@@ -37,13 +39,15 @@ const routes: Routes = [
             },
             {
                 path: ':id/edit',
-                component: BookEditComponent
+                component: BookEditComponent,
+                canActivate: [AuthGuard]
             }
         ]
     },
     {
         path: 'profile',
-        component: UserComponent
+        component: UserComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'auth',
