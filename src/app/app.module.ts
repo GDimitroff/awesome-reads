@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -26,6 +26,8 @@ import { BookQuotesEditComponent } from './books/book-details/book-quotes-edit/b
 import { UserComponent } from './user/user.component';
 import { AuthComponent } from './auth/auth.component';
 import { Loading } from 'src/shared/loading/loading.component';
+
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 @NgModule({
     declarations: [
@@ -57,7 +59,12 @@ import { Loading } from 'src/shared/loading/loading.component';
         AppRoutingModule
     ],
     providers: [
-        BookService
+        BookService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptorService,
+            multi: true
+        }
     ],
     bootstrap: [AppComponent]
 })

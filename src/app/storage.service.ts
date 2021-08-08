@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { exhaustMap, take } from "rxjs/operators";
 
 import { BookService } from "./books/book.service";
+import { AuthService } from "./auth/auth.service";
 
 import { Book } from "./books/book.model";
 import { BookQuote } from "./books/book-details/book-quotes/book-quote.model";
@@ -11,7 +13,7 @@ import { BookQuote } from "./books/book-details/book-quotes/book-quote.model";
 })
 export class StorageService {
 
-    constructor(private http: HttpClient, private bookService: BookService) { }
+    constructor(private http: HttpClient, private bookService: BookService, private authService: AuthService) { }
 
     storeBooks() {
         const books = this.bookService.getBooks();
@@ -21,7 +23,7 @@ export class StorageService {
     }
 
     getBooks() {
-        
+
     }
 
     addBook() {
@@ -33,5 +35,9 @@ export class StorageService {
         this.http.post<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books.json', book).subscribe(response => {
             console.log(response);
         });
+    }
+
+    TEST_METHOD() {
+        return this.http.get<Book[]>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books.json');
     }
 }
