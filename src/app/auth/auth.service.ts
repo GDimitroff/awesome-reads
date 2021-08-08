@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -27,21 +27,7 @@ export class AuthService {
                 password,
                 returnSecureToken: true
             })
-            .pipe(catchError(errorResponse => {
-                let errorMessage = 'An unknown error occured!';
-                if (!errorResponse.error || !errorResponse.error.error) {
-                    return throwError(errorMessage);
-                }
-
-                switch (errorResponse.error.error.message) {
-                    case 'EMAIL_EXISTS': errorMessage = 'This email address already exist!';
-                        break;
-                    case 'TOO_MANY_ATTEMPTS_TRY_LATER': errorMessage = 'Too many attempts! Try again later!';
-                        break;
-                }
-
-                return throwError(errorMessage);
-            }));
+            .pipe(catchError(this.handleError));
     }
 
     login(email: string, password: string) {
@@ -50,6 +36,27 @@ export class AuthService {
                 email,
                 password,
                 returnSecureToken: true
-            });
+            })
+            .pipe(catchError(this.handleError));
+    }
+
+    private handleError(errorResponse: HttpErrorResponse) {
+        let errorMessage = 'An unknown error occured!';
+        if (!errorResponse.error || !errorResponse.error.error) {
+            return throwError(errorMessage);
+        }
+
+        switch (errorResponse.error.error.message) {
+            case 'EMAIL_EXISTS': errorMessage = 'This email address already exist.';
+                break;
+            case 'TOO_MANY_ATTEMPTS_TRY_LATER': errorMessage = 'Too many attempts. Try again later!';
+                break;
+            case 'EMAIL_NOT_FOUND': errorMessage = 'Wrong email address or password.';
+                break;
+            case 'INVALID_PASSWORD': errorMessage = 'Wrong email address or password.';
+                break;
+        }
+
+        return throwError(errorMessage);
     }
 }
