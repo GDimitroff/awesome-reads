@@ -16,7 +16,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
     userId!: string;
     editMode: boolean = false;
     id!: string;
-    bookForm!: FormGroup;
+    bookForm: FormGroup = {} as FormGroup;
 
     constructor(private route: ActivatedRoute, private bookService: BookService,
         private router: Router, private authService: AuthService) { }
@@ -52,7 +52,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
     onSubmit() {
         if (this.editMode) {
             this.bookService.updateBook(this.id, this.bookForm.value);
-            this.router.navigate(['../'], { relativeTo: this.route });
+            this.router.navigate(['/books'], { relativeTo: this.route });
         } else {
             const newBook = {
                 title: this.bookForm.value.title,
@@ -82,24 +82,31 @@ export class BookEditComponent implements OnInit, OnDestroy {
         let bookQuotes = new FormArray([]);
 
         if (this.editMode) {
-            // let book = this.bookService.getBook(this.id).subscribe(book => {
-            //     return book;
-            // });
+            this.bookService.getBook(this.id).subscribe(book => {
+                bookTitle = book.title;
+                bookAuthor = book.author;
+                bookDesciption = book.description;
+                bookPages = book.pages;
+                bookImageUrl = book.imageUrl;
+                if (book['quotes']) {
+                    for (let quote of book.quotes) {
+                        bookQuotes.push(
+                            new FormGroup({
+                                'quote': new FormControl(quote.quote, Validators.required)
+                            })
+                        );
+                    }
+                }
 
-            // bookTitle = book.title;
-            // bookAuthor = book.author;
-            // bookDesciption = book.description;
-            // bookPages = book.pages;
-            // bookImageUrl = book.imageUrl;
-            // if (book['quotes']) {
-            //     for (let quote of book.quotes) {
-            //         bookQuotes.push(
-            //             new FormGroup({
-            //                 'quote': new FormControl(quote.quote, Validators.required)
-            //             })
-            //         );
-            //     }
-            // }
+                this.bookForm = new FormGroup({
+                    'title': new FormControl(bookTitle, Validators.required),
+                    'author': new FormControl(bookAuthor, Validators.required),
+                    'description': new FormControl(bookDesciption, Validators.required),
+                    'pages': new FormControl(bookPages, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
+                    'imageUrl': new FormControl(bookImageUrl, Validators.required),
+                    'quotes': bookQuotes
+                });
+            });
         }
 
         this.bookForm = new FormGroup({

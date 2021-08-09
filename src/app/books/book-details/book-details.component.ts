@@ -15,6 +15,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class BookDetailsComponent implements OnInit, OnDestroy {
     private userSub!: Subscription;
+    private booksSub!: Subscription;
     isAuthenticated: boolean = false;
     displayNewQuote: boolean = false;
     book: Book = {} as Book;
@@ -26,13 +27,19 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
         private router: Router,
         private userService: UserService,
         private authService: AuthService
-    ) { }
+    ) { 
+        
+    }
 
     ngOnInit(): void {
         this.route.params.subscribe((params: Params) => {
             this.id = params['id'];
             this.bookService.getBook(this.id).subscribe(book => { 
                 this.book = book;
+            });
+
+            this.booksSub = this.bookService.booksChanged.subscribe(books => {
+                this.book = books.find(book => book.id === this.id)!;
             });
 
             this.displayNewQuote = false;
@@ -45,6 +52,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.userSub.unsubscribe();
+        this.booksSub.unsubscribe();
     }
 
     onAddBook() {

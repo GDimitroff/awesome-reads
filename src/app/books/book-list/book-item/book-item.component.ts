@@ -13,6 +13,7 @@ export class BookItemComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
+
     }
 
 }

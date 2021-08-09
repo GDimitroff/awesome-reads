@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class BookService {
     booksChanged = new Subject<Book[]>();
-    private books!: Book[];
+    private books: Book[] = [] as Book[];
 
     constructor(private http: HttpClient) { }
 
@@ -23,12 +23,18 @@ export class BookService {
                     }
                 }
 
+                this.books = books;
+                this.booksChanged.next(this.books.slice());
                 return books;
             }));
     }
 
     getBook(id: string) {
-        return this.http.get<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json');
+        return this.http.get<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json')
+            .pipe(map(response => {
+                this.booksChanged.next(this.books.slice());
+                return response;
+            }));
     }
 
     addBook(book: Book): Book {
@@ -43,8 +49,11 @@ export class BookService {
     }
 
     updateBook(id: string, updatedBook: Book): void {
-        let book = this.books.find(book => book.id === id);
-        book = updatedBook;
+        this.http.put<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json', updatedBook).subscribe();
+
+        const bookIndex = this.books.findIndex(book => book.id === id);
+        updatedBook.id = id;
+        this.books[bookIndex] = updatedBook;
         this.booksChanged.next(this.books.slice());
     }
 
