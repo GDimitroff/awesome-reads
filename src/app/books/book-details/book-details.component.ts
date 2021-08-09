@@ -17,7 +17,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     private userSub!: Subscription;
     isAuthenticated: boolean = false;
     displayNewQuote: boolean = false;
-    book!: Book;
+    book: Book = {} as Book;
     id!: string;
 
     constructor(
@@ -31,14 +31,16 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.route.params.subscribe((params: Params) => {
             this.id = params['id'];
-            this.book = this.bookService.getBook(this.id);
+            this.bookService.getBook(this.id).subscribe(book => { 
+                this.book = book;
+            });
+
             this.displayNewQuote = false;
         });
 
         this.userSub = this.authService.user.subscribe(user => {
             this.isAuthenticated = !!user;
         });
-
     }
 
     ngOnDestroy(): void {

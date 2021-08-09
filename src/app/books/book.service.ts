@@ -4,34 +4,31 @@ import { Subject } from 'rxjs';
 
 import { BookQuote } from './book-details/book-quotes/book-quote.model';
 import { Book } from './book.model';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class BookService {
     booksChanged = new Subject<Book[]>();
-    private books: Book[] = [];
+    private books!: Book[];
 
     constructor(private http: HttpClient) { }
 
-    getBooks(): Book[] {
-        this.http.get<Book[]>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books.json')
-            .subscribe(response => {
-                const booksArray: Book[] = [];
+    getBooks() {
+        return this.http.get<Book[]>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books.json')
+            .pipe(map(response => {
+                const books: Book[] = [];
                 for (const key in response) {
                     if (response.hasOwnProperty(key)) {
-                        booksArray.push({ ...response[key], id: key });
+                        books.push({ ...response[key], id: key });
                     }
                 }
 
-                this.books = booksArray;
-                this.booksChanged.next(this.books.slice());
-            });
-
-        return this.books.slice();
+                return books;
+            }));
     }
 
-    getBook(id: string): Book {
-        const book = this.books.find(book => book.id === id);
-        return book!;
+    getBook(id: string) {
+        return this.http.get<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json');
     }
 
     addBook(book: Book): Book {

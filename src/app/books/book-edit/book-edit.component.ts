@@ -82,21 +82,24 @@ export class BookEditComponent implements OnInit, OnDestroy {
         let bookQuotes = new FormArray([]);
 
         if (this.editMode) {
-            const book = this.bookService.getBook(this.id);
-            bookTitle = book.title;
-            bookAuthor = book.author;
-            bookDesciption = book.description;
-            bookPages = book.pages;
-            bookImageUrl = book.imageUrl;
-            if (book['quotes']) {
-                for (let quote of book.quotes) {
-                    bookQuotes.push(
-                        new FormGroup({
-                            'quote': new FormControl(quote.quote, Validators.required)
-                        })
-                    );
-                }
-            }
+            // let book = this.bookService.getBook(this.id).subscribe(book => {
+            //     return book;
+            // });
+
+            // bookTitle = book.title;
+            // bookAuthor = book.author;
+            // bookDesciption = book.description;
+            // bookPages = book.pages;
+            // bookImageUrl = book.imageUrl;
+            // if (book['quotes']) {
+            //     for (let quote of book.quotes) {
+            //         bookQuotes.push(
+            //             new FormGroup({
+            //                 'quote': new FormControl(quote.quote, Validators.required)
+            //             })
+            //         );
+            //     }
+            // }
         }
 
         this.bookForm = new FormGroup({
