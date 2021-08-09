@@ -30,11 +30,7 @@ export class BookService {
     }
 
     getBook(id: string) {
-        return this.http.get<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json')
-            .pipe(map(response => {
-                this.booksChanged.next(this.books.slice());
-                return response;
-            }));
+        return this.http.get<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json');
     }
 
     addBook(book: Book): Book {

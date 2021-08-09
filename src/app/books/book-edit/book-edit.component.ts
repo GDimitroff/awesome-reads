@@ -51,7 +51,17 @@ export class BookEditComponent implements OnInit, OnDestroy {
 
     onSubmit() {
         if (this.editMode) {
-            this.bookService.updateBook(this.id, this.bookForm.value);
+            const updatedBook = {
+                title: this.bookForm.value.title,
+                author: this.bookForm.value.author,
+                pages: this.bookForm.value.pages,
+                description: this.bookForm.value.description,
+                imageUrl: this.bookForm.value.imageUrl,
+                quotes: this.bookForm.value.quotes,
+                ownerId: this.userId
+            };
+
+            this.bookService.updateBook(this.id, updatedBook);
             this.router.navigate(['/books'], { relativeTo: this.route });
         } else {
             const newBook = {

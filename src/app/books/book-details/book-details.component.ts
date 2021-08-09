@@ -7,6 +7,8 @@ import { UserService } from 'src/app/user/user.service';
 
 import { Book } from '../book.model';
 import { AuthService } from 'src/app/auth/auth.service';
+import { map, tap } from 'rxjs/operators';
+
 
 @Component({
     selector: 'app-book-details',
@@ -15,10 +17,13 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class BookDetailsComponent implements OnInit, OnDestroy {
     private userSub!: Subscription;
-    private booksSub!: Subscription;
     isAuthenticated: boolean = false;
     displayNewQuote: boolean = false;
     book: Book = {} as Book;
+
+    userId!: string;
+    ownerId!: string;
+
     id!: string;
 
     constructor(
@@ -26,33 +31,31 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private router: Router,
         private userService: UserService,
-        private authService: AuthService
-    ) { 
-        
-    }
+        private authService: AuthService,
+    ) { }
 
     ngOnInit(): void {
-        this.route.params.subscribe((params: Params) => {
-            this.id = params['id'];
-            this.bookService.getBook(this.id).subscribe(book => { 
-                this.book = book;
+        setTimeout(() => {
+            this.route.params.subscribe((params: Params) => {
+                this.id = params['id'];
+    
+                this.bookService.getBook(this.id).subscribe(book => {
+                    this.book = book;
+                    this.ownerId = book.ownerId;
+                });
+    
+                this.displayNewQuote = false;
             });
-
-            this.booksSub = this.bookService.booksChanged.subscribe(books => {
-                this.book = books.find(book => book.id === this.id)!;
+    
+            this.userSub = this.authService.user.subscribe(user => {
+                this.isAuthenticated = !!user;
+                this.userId = user.id;
             });
-
-            this.displayNewQuote = false;
-        });
-
-        this.userSub = this.authService.user.subscribe(user => {
-            this.isAuthenticated = !!user;
-        });
+        }, 1000)
     }
 
     ngOnDestroy(): void {
         this.userSub.unsubscribe();
-        this.booksSub.unsubscribe();
     }
 
     onAddBook() {
@@ -70,6 +73,10 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
 
     onNewQuote(): void {
         this.displayNewQuote = true;
+    }
+
+    get isOwner(): boolean {
+        return this.userId == this.ownerId;
     }
 
 }
