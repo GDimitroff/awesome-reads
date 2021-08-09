@@ -14,13 +14,13 @@ import { BookQuote } from '../book-quotes/book-quote.model';
 })
 export class BookQuotesEditComponent implements OnInit {
     book!: Book;
-    id!: number;
+    id!: string;
 
     constructor(private bookService: BookService, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
         this.route.params.subscribe((params: Params) => {
-            this.id = Number(params['id']);
+            this.id = params['id'];
             this.book = this.bookService.getBook(this.id);
         });
     }

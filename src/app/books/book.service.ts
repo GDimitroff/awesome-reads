@@ -15,15 +15,23 @@ export class BookService {
     getBooks(): Book[] {
         this.http.get<Book[]>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books.json')
             .subscribe(response => {
-                this.books = Object.values(response);
+                const booksArray: Book[] = [];
+                for (const key in response) {
+                    if (response.hasOwnProperty(key)) {
+                        booksArray.push({ ...response[key], id: key });
+                    }
+                }
+
+                this.books = booksArray;
                 this.booksChanged.next(this.books.slice());
             });
 
         return this.books.slice();
     }
 
-    getBook(index: number): Book {
-        return this.books[index];
+    getBook(id: string): Book {
+        const book = this.books.find(book => book.id === id);
+        return book!;
     }
 
     addBook(book: Book): Book {
@@ -37,18 +45,21 @@ export class BookService {
         return book;
     }
 
-    updateBook(index: number, updatedBook: Book): void {
-        this.books[index] = updatedBook;
+    updateBook(id: string, updatedBook: Book): void {
+        let book = this.books.find(book => book.id === id);
+        book = updatedBook;
         this.booksChanged.next(this.books.slice());
     }
 
-    deleteBook(index: number): void {
+    deleteBook(id: string): void {
+        const index = this.books.findIndex(book => book.id === id);
         this.books.splice(index, 1);
         this.booksChanged.next(this.books.slice());
     }
 
-    addQuote(index: number, quote: BookQuote): void {
-        this.books[index].quotes.push(quote);
+    addQuote(id: string, quote: BookQuote): void {
+        const book = this.books.find(book => book.id === id);
+        book!.quotes.push(quote);
         this.booksChanged.next(this.books.slice());
     }
 }

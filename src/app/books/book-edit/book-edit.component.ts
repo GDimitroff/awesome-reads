@@ -15,7 +15,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
     private userSub!: Subscription;
     userId!: string;
     editMode: boolean = false;
-    id!: number;
+    id!: string;
     bookForm!: FormGroup;
 
     constructor(private route: ActivatedRoute, private bookService: BookService,
@@ -23,7 +23,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.route.params.subscribe((params: Params) => {
-            this.id = Number(params['id']);
+            this.id = params['id'];
             this.editMode = params['id'] != null;
             this.initForm();
         });
@@ -64,14 +64,8 @@ export class BookEditComponent implements OnInit, OnDestroy {
                 ownerId: this.userId
             };
 
-            const addedBook = this.bookService.addBook(newBook);
-            console.log(addedBook)
-
-            //TODO: make request to db to get book id and do proper redirect to details page of the newly added book
-            // const id = this.bookService.getBooks().length - 1;
-            // this.router.navigate(['../', id], { relativeTo: this.route });
-
-            this.router.navigate(['../', addedBook.id], { relativeTo: this.route });
+            this.bookService.addBook(newBook);
+            this.router.navigate(['../'], { relativeTo: this.route });
         }
     }
 
