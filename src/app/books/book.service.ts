@@ -64,5 +64,7 @@ export class BookService {
         const book = this.books.find(book => book.id === id);
         book!.quotes.push(quote);
         this.booksChanged.next(this.books.slice());
+
+        this.http.put<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json', book).subscribe();
     }
 }

@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { BookService } from '../book.service';
-import { UserService } from 'src/app/user/user.service';
+import { ProfileService } from 'src/app/profile/profile.service';
 
 import { Book } from '../book.model';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -28,7 +28,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
         private bookService: BookService,
         private route: ActivatedRoute,
         private router: Router,
-        private userService: UserService,
+        private userService: ProfileService,
         private authService: AuthService,
     ) { }
 

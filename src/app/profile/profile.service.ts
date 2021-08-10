@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 
-import { User } from './user.model';
+import { Profile } from './profile.model';
 import { Book } from '../books/book.model';
 import { BookQuote } from '../books/book-details/book-quotes/book-quote.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class UserService {
-    private user!: User;
+export class ProfileService {
+    private profile!: Profile;
 
     constructor() { 
-        this.user = { 
+        this.profile = { 
             username: 'Dido', 
             books: [], 
             quotes: []
@@ -19,18 +19,18 @@ export class UserService {
     }
 
     getUserData() {
-        return this.user;
+        return this.profile;
     }
 
     getUserQuotes() {
-        return this.user.quotes;
+        return this.profile.quotes;
     }
 
     addBook(book: Book): void {
-        this.user.books.push(book);
+        this.profile.books.push(book);
     }
 
     addQuote(quote: BookQuote) {
-        this.user.quotes.push(quote);
+        this.profile.quotes.push(quote);
     }
 }

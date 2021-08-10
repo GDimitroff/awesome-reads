@@ -6,7 +6,7 @@
     </button>
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" style="cursor: pointer;" (click)="onAddBook()">Add to my books</a></li>
-        <li><a class="dropdown-item" style="cursor: pointer;" (click)="onNewQuote()">Add new quote</a></li>
+        <li *ngIf="isOwner"><a class="dropdown-item" style="cursor: pointer;" (click)="onNewQuote()">Add new quote</a></li>
         <li *ngIf="isOwner"><a class="dropdown-item" style="cursor: pointer;" (click)="onEditBook()">Edit</a></li>
         <li *ngIf="isOwner"><a class="dropdown-item" style="cursor: pointer;" (click)="onDeleteBook()">Delete</a></li>
     </ul>

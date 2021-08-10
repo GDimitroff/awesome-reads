@@ -11,7 +11,6 @@ export class AuthInterceptorService implements HttpInterceptor {
     constructor(private authService: AuthService) { }
 
     // ExhaustMap waits to first observable to complete and then the second observable replaces the entire chain
-    // TODO: gettting the books only for auth users?
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return this.authService.user.pipe(take(1), exhaustMap(user => {
             if (!user || req.url === 'https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books') {

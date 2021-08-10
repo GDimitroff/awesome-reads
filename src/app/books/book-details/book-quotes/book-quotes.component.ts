@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { UserService } from 'src/app/user/user.service';
+import { ProfileService } from 'src/app/profile/profile.service';
 
 import { Book } from '../../book.model';
 import { BookQuote } from './book-quote.model';
@@ -14,7 +14,7 @@ export class BookQuotes implements OnInit {
     @Input() book!: Book;
     @Input() isAuth!: boolean;
 
-    constructor(private userService: UserService) { }
+    constructor(private userService: ProfileService) { }
 
     ngOnInit(): void {
 

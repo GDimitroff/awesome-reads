@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -21,7 +21,9 @@ export class BookQuotesEditComponent implements OnInit {
     ngOnInit(): void {
         this.route.params.subscribe((params: Params) => {
             this.id = params['id'];
-            this.bookService.getBook(this.id).subscribe(book => { this.book = book});
+            this.bookService.getBook(this.id).subscribe(book => {
+                this.book = book;
+            });
         });
     }
 
