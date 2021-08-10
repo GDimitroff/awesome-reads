@@ -57,7 +57,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     }
 
     onAddBook() {
-        this.profileService.addBook(this.book);
+        this.profileService.addBook(this.book, this.id);
     }
 
     onEditBook() {

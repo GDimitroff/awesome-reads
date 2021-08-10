@@ -43,7 +43,7 @@ export class ProfileService {
         return this.http.get<Profile>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/users/' + id + '.json');
     }
 
-    addBook(book: Book): void {
+    addBook(book: Book, id: string): void {
         const firebaseId = localStorage.getItem('firebaseUserId');
         this.http.get<Profile>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/users/' + firebaseId + '.json')
             .pipe(
@@ -54,6 +54,7 @@ export class ProfileService {
                 })
             )
             .subscribe(profileData => {
+                book['id'] = id; 
                 profileData.books.push(book);
 
                 this.http.put<Profile>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/users/' + firebaseId + '.json', profileData)
@@ -77,5 +78,10 @@ export class ProfileService {
                 this.http.put<Profile>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/users/' + firebaseId + '.json', profileData)
                     .subscribe();
             });
+    }
+
+    deleteBook(profile: Profile) {
+        const firebaseId = localStorage.getItem('firebaseUserId');
+        this.http.put<Profile>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/users/' + firebaseId + '.json', profile).subscribe();
     }
 }
