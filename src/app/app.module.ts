@@ -22,7 +22,6 @@ import { BookItemComponent } from './books/book-list/book-item/book-item.compone
 import { BookStartComponent } from './books/book-start/book-start.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { BookQuotes } from './books/book-details/book-quotes/book-quotes.component';
-import { BookQuotesEditComponent } from './books/book-details/book-quotes-edit/book-quotes-edit.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthComponent } from './auth/auth.component';
 import { Loading } from 'src/shared/loading/loading.component';
@@ -46,7 +45,6 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
         BookEditComponent,
         BookQuotes,
         ProfileComponent,
-        BookQuotesEditComponent,
         AuthComponent,
         Loading
     ],

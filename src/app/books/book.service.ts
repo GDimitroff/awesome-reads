@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { BookQuote } from './book-details/book-quotes/book-quote.model';
 import { Book } from './book.model';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class BookService {
@@ -29,28 +29,40 @@ export class BookService {
             }));
     }
 
-    getBook(id: string) {
-        return this.http.get<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json');
+    getBook(id: string): Book {
+        let book = this.books.find(book => book.id == id);
+
+        if (book) {
+            localStorage.setItem('book', JSON.stringify(book));
+        } else {
+            book = JSON.parse(localStorage.getItem('book')!);
+        }
+
+        return book!;
     }
 
-    addBook(book: Book): Book {
-        this.http.post<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books.json', book).subscribe(response => {
-            const id = Object.values(response)[0];
-            book['id'] = id;
-        });
-
-        this.books.push(book);
-        this.booksChanged.next(this.books.slice());
-        return book;
+    addBook(book: Book): Observable<Book> {
+        return this.http.post<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books.json', book)
+            .pipe(
+                tap(res => {
+                    const id = Object.values(res)[0];
+                    book.id = id;
+                    this.books.push(book);
+                    this.booksChanged.next(this.books.slice());
+                    return res;
+                }));
     }
 
-    updateBook(id: string, updatedBook: Book): void {
-        this.http.put<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json', updatedBook).subscribe();
-
-        const bookIndex = this.books.findIndex(book => book.id === id);
-        updatedBook.id = id;
-        this.books[bookIndex] = updatedBook;
-        this.booksChanged.next(this.books.slice());
+    updateBook(id: string, updatedBook: Book): Observable<Book> {
+        return this.http.put<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json', updatedBook)
+            .pipe(
+                tap(res => {
+                    const bookIndex = this.books.findIndex(book => book.id === id);
+                    updatedBook.id = id;
+                    this.books[bookIndex] = updatedBook;
+                    this.booksChanged.next(this.books.slice());
+                    return res;
+                }));
     }
 
     deleteBook(id: string): void {

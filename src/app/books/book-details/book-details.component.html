@@ -6,7 +6,8 @@
     </button>
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" style="cursor: pointer;" (click)="onAddBook()">Add to my books</a></li>
-        <li *ngIf="isOwner"><a class="dropdown-item" style="cursor: pointer;" (click)="onNewQuote()">Add new quote</a></li>
+        <li *ngIf="isOwner"><a class="dropdown-item" style="cursor: pointer;" (click)="onNewQuote()">Add new quote</a>
+        </li>
         <li *ngIf="isOwner"><a class="dropdown-item" style="cursor: pointer;" (click)="onEditBook()">Edit</a></li>
         <li *ngIf="isOwner"><a class="dropdown-item" style="cursor: pointer;" (click)="onDeleteBook()">Delete</a></li>
     </ul>
@@ -18,4 +19,14 @@
 <p>Pages: {{ book.pages }}</p>
 
 <app-book-quotes [book]="book" [isAuth]="isAuthenticated"></app-book-quotes>
-<app-book-quotes-edit *ngIf="displayNewQuote"></app-book-quotes-edit>
+<div *ngIf="displayNewQuote">
+    <form (ngSubmit)="onSubmitQuote(f)" #f="ngForm" class="px-3">
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="quoteText" placeholder="quote" style="height: 100px" name="quoteText"
+                ngModel required>
+        </textarea>
+            <label for="quoteText">Enter new quote...</label>
+        </div>
+        <button type="submit" class="btn btn-dark w-100" [disabled]="!f.valid">Add new quote to the book</button>
+    </form>
+</div>
