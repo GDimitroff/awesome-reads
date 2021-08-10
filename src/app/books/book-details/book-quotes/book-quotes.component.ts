@@ -14,7 +14,7 @@ export class BookQuotes implements OnInit {
     @Input() book!: Book;
     @Input() isAuth!: boolean;
 
-    constructor(private userService: ProfileService) { }
+    constructor(private profileService: ProfileService) { }
 
     ngOnInit(): void {
 
@@ -22,6 +22,6 @@ export class BookQuotes implements OnInit {
 
     onAddQuote(quote: string, author: string) {
         const newQuote = new BookQuote(quote, author);
-        this.userService.addQuote(newQuote);
+        this.profileService.addQuote(newQuote);
     }
 }

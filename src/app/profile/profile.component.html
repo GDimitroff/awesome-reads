@@ -6,7 +6,8 @@
                     <h2>Welcome, {{ profile.email }}!</h2>
                     <p class="lead">Enjoy your favorite books and quotes!</p>
                     <p class="pt-5">{{ randomQuote }}</p>
-                    <div class="btn btn-outline-dark" (click)="onWantQuote()">Give me another quote &#10084;</div>
+                    <div class="btn btn-outline-dark" (click)="onGenerateNewQuote()">Give me another quote &#10084;
+                    </div>
                 </div>
                 <div class="col-md-6 d-flex d-none d-md-block">
                     <img class="image-fluid"
@@ -16,9 +17,9 @@
             <hr>
         </div>
     </div>
-    <div class="container">
+    <div class="container" *ngIf="profile && profile.books">
         <h1 class="text-center pt-1 py-3">My favorite books</h1>
-        <div class="row text-start align-items-center" *ngIf="profile">
+        <div class="row text-start align-items-center">
             <div class="col-md-6 text-center" *ngFor="let book of profile.books; let i = index">
                 <div routerLink="/books/{{book.id}}" routerLinkActive="active"
                     class="row g-0 border rounded overflow-hidden flex-md-row  mb-2 shadow-sm h-md-250 position-relative"
@@ -37,21 +38,14 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container" *ngIf="profile && profile.quotes">
             <h1 class="text-center pt-1 pt-3 pb-3">My favorite quotes</h1>
-            <div class="row text-start align-items-center" *ngIf="profile">
-                <div class="col-md-6 text-center" *ngFor="let quote of profile.quotes">
-                    <div class="col-md-11" style="height: 130px;">
-                        "{{ quote.quote }}"
-                        <p class="lead py-2">{{ quote.author }}</p>
-                    </div>
-                    <div class="col-md-1 d-none d-sm-block">
-                        <a class="btn btn-danger" style="font-weight: bold;">X</a>
-                    </div>
-                    <div class="py-2">
-                        <hr>
-                    </div>
+            <div class="row text-center" *ngFor="let quote of profile.quotes">
+                <div class="col-md-12 text center">
+                    "{{ quote.quote }}"
+                    <p class="lead py-2">{{ quote.author }}</p>
                 </div>
+                <hr>
             </div>
         </div>
     </div>

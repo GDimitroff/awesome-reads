@@ -1,22 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ProfileService } from './profile.service';
 import { Profile } from './profile.model';
-import { AuthService } from '../auth/auth.service';
 
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit, OnDestroy {
-    private userSub!: Subscription;
+export class ProfileComponent implements OnInit {
     profile!: Profile;
-    userId!: string;
-    userEmail!: string;
 
+    randomQuote!: string;
     randomQuotes: string[] = [
         '“A reader lives a thousand lives before he dies . . . The man who never reads lives only one.” - George R.R. Martin',
         '“Until I feared I would lose it, I never loved to read. One does not love breathing.” - Harper Lee',
@@ -35,27 +31,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
         '“Reading one book is like eating one potato chip.” - Diane Duane'
     ];
 
-    randomQuote: string = '“A reader lives a thousand lives before he dies . . . The man who never reads lives only one.” - George R.R. Martin';
-
-    constructor(private profileService: ProfileService, private authService: AuthService, private router: Router) { }
+    constructor(private profileService: ProfileService) { }
 
     ngOnInit(): void {
-        this.userSub = this.authService.user.subscribe(user => {
-            this.userId = user.id;
-            this.userEmail = user.email;
-        });
-
         const firebaseId = localStorage.getItem('firebaseUserId');
         this.profileService.getProfile(firebaseId!).subscribe(profile => {
             this.profile = profile;
         });
+
+        this.onGenerateNewQuote();
     }
 
-    ngOnDestroy() {
-        this.userSub.unsubscribe();
-    }
-
-    onWantQuote() {
+    onGenerateNewQuote() {
         const index = Math.floor(Math.random() * 14) + 1;
         this.randomQuote = this.randomQuotes[index];
     }
@@ -63,6 +50,5 @@ export class ProfileComponent implements OnInit, OnDestroy {
     onDeleteBook(id: number) {
         this.profile.books.splice(id, 1);
         this.profileService.deleteBook(this.profile);
-        console.log(this.profile)
     }
 }
