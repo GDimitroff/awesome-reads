@@ -14,12 +14,28 @@ export class ProfileService {
 
     constructor(private http: HttpClient) { }
 
-    createProfile(id: string, email: string) {
+    createFirebaseUserProfile(id: string, email: string) {
         this.http.post<Profile>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/users.json', { id, email })
             .subscribe(profile => {
                 this.profile = profile;
                 const firebaseId = Object.values(profile)[0];
                 localStorage.setItem('firebaseUserId', firebaseId);
+            });
+    }
+
+    getFirebaseUserProfile(id: string) {
+        this.http.get<Profile[]>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/users.json')
+            .subscribe(profiles => {
+                
+                let firebaseUserId = undefined;
+                const profilesArray = Object.entries(profiles);
+                for (let key in profilesArray) {
+                    if (profilesArray[key][1].id === id) {
+                        firebaseUserId = profilesArray[key][0];
+                    }
+                }
+
+                localStorage.setItem('firebaseUserId', firebaseUserId!)
             });
     }
 

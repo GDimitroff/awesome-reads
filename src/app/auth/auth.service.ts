@@ -57,6 +57,7 @@ export class AuthService {
         this.user.next(null!);
         this.router.navigate(['/auth']);
         localStorage.removeItem('userData');
+        localStorage.removeItem('firebaseUserId');
 
         if (this.tokenExpirationTimer) {
             clearTimeout(this.tokenExpirationTimer);

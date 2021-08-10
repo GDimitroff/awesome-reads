@@ -41,7 +41,9 @@ export class AuthComponent {
 
         authObservable.subscribe(response => {
             if (!this.isLoginMode) {
-                this.profileService.createProfile(response.localId, response.email);
+                this.profileService.createFirebaseUserProfile(response.localId, response.email);
+            } else {
+                this.profileService.getFirebaseUserProfile(response.localId);
             }
 
             this.isLoading = false;
