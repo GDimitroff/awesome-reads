@@ -7,8 +7,6 @@ import { UserService } from 'src/app/user/user.service';
 
 import { Book } from '../book.model';
 import { AuthService } from 'src/app/auth/auth.service';
-import { map, tap } from 'rxjs/operators';
-
 
 @Component({
     selector: 'app-book-details',
@@ -51,7 +49,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
                 this.isAuthenticated = !!user;
                 this.userId = user.id;
             });
-        }, 1000)
+        }, 100)
     }
 
     ngOnDestroy(): void {

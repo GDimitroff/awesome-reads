@@ -54,6 +54,7 @@ export class BookService {
     }
 
     deleteBook(id: string): void {
+        this.http.delete('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json').subscribe();
         const index = this.books.findIndex(book => book.id === id);
         this.books.splice(index, 1);
         this.booksChanged.next(this.books.slice());
