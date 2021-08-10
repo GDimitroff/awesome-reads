@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 
 import { ProfileService } from './profile.service';
 import { Profile } from './profile.model';
+import { Book } from '../books/book.model';
+import { BookService } from '../books/book.service';
 
 @Component({
     selector: 'app-profile',
@@ -10,6 +11,7 @@ import { Profile } from './profile.model';
     styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+    books!: Book[];
     profile!: Profile;
 
     randomQuote!: string;
@@ -31,12 +33,16 @@ export class ProfileComponent implements OnInit {
         '“Reading one book is like eating one potato chip.” - Diane Duane'
     ];
 
-    constructor(private profileService: ProfileService) { }
+    constructor(private profileService: ProfileService, private bookService: BookService) { }
 
     ngOnInit(): void {
         const firebaseId = localStorage.getItem('firebaseUserId');
         this.profileService.getProfile(firebaseId!).subscribe(profile => {
             this.profile = profile;
+        });
+
+        this.bookService.getBooks().subscribe(books => {
+            this.books = books;
         });
 
         this.onGenerateNewQuote();

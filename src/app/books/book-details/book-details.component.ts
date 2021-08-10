@@ -39,6 +39,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
             this.id = params['id'];
 
             this.book = this.bookService.getBook(this.id);
+            this.ownerId = this.book.ownerId;
             this.displayNewQuote = false;
         });
 

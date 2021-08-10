@@ -14,12 +14,12 @@
                         src="https://i.pinimg.com/474x/87/21/25/872125d237a04ca04f1515668b3dbdf1.jpg" alt="">
                 </div>
             </div>
-            <hr>
         </div>
     </div>
-    <div class="container" *ngIf="profile && profile.books">
-        <h1 class="text-center pt-1 py-3">My favorite books</h1>
-        <div class="row text-start align-items-center">
+    <div class="container pt-5" *ngIf="profile && profile.books">
+        <h1 class="text-center pt-1 py-2">My favorite books</h1>
+        <hr class="style-eight">
+        <div class="row text-start align-items-center pt-2">
             <div class="col-md-6 text-center" *ngFor="let book of profile.books; let i = index">
                 <div routerLink="/books/{{book.id}}" routerLinkActive="active"
                     class="row g-0 border rounded overflow-hidden flex-md-row  mb-2 shadow-sm h-md-250 position-relative"
@@ -38,8 +38,9 @@
                 </div>
             </div>
         </div>
-        <div class="container" *ngIf="profile && profile.quotes">
-            <h1 class="text-center pt-1 pt-3 pb-3">My favorite quotes</h1>
+        <div class="container pt-5" *ngIf="profile && profile.quotes">
+            <h1 class="text-center pt-1 pt-3">My favorite quotes</h1>
+            <hr class="style-eight">
             <div class="row text-center" *ngFor="let quote of profile.quotes">
                 <div class="col-md-12 text center">
                     "{{ quote.quote }}"
