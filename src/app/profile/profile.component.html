@@ -1,31 +1,8 @@
 <section class="p-5">
-    <h1>MY PROFILE</h1>
+    <h1 class="text-center pt-1 pb-5">My favorite books</h1>
     <div class="container">
-        <h1 class="text-center pt-1 pb-5">MY QUOTES</h1>
-        <hr>
-        <div class="row text-start align-items-center">
-            <div class="col-md-6 text-center" *ngFor="let quote of user.quotes">
-                <div class="col-md-11" style="height: 130px;">
-                    "{{ quote.quote }}"
-                    <p class="lead py-2">{{ quote.author }}</p>
-                </div>
-                <div class="col-md-1 d-none d-sm-block">
-                    <a class="btn btn-danger" style="font-weight: bold;">X</a>
-                </div>
-                <div class="py-2">
-                    <hr>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="p-5">
-    <div class="container">
-        <h1 class="text-center pt-1 pb-5">MY BOOKS</h1>
-        <hr>
-        <div class="row text-start align-items-center">
-            <div class="col-md-6 text-center" *ngFor="let book of user.books">
+        <div class="row text-start align-items-center" *ngIf="profile">
+            <div class="col-md-6 text-center" *ngFor="let book of profile.books">
                 <div class="col-md-11" style="height: 130px;">
                     "{{ book.title }}"
                     <p class="lead py-2">{{ book.author }}</p>
@@ -38,7 +15,22 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+            <h1 class="text-center pt-1 pb-5">My favorite quotes</h1>
+            <div class="row text-start align-items-center" *ngIf="profile">
+                <div class="col-md-6 text-center" *ngFor="let quote of profile.quotes">
+                    <div class="col-md-11" style="height: 130px;">
+                        "{{ quote.quote }}"
+                        <p class="lead py-2">{{ quote.author }}</p>
+                    </div>
+                    <div class="col-md-1 d-none d-sm-block">
+                        <a class="btn btn-danger" style="font-weight: bold;">X</a>
+                    </div>
+                    <div class="py-2">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
-
-<!-- TODO: HUGE STUFF TO FIX AND IMPLEMENT HERE -->

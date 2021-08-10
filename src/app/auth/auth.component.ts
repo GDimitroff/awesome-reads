@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 
+import { ProfileService } from "../profile/profile.service";
 import { AuthResponseData, AuthService } from "./auth.service";
 
 @Component({
@@ -15,7 +16,7 @@ export class AuthComponent {
     isLoading: boolean = false;
     error!: string;
 
-    constructor(private authService: AuthService, private router: Router) { }
+    constructor(private authService: AuthService, private router: Router, private profileService: ProfileService) { }
 
     onSwitchMode() {
         this.isLoginMode = !this.isLoginMode;
@@ -39,6 +40,10 @@ export class AuthComponent {
         }
 
         authObservable.subscribe(response => {
+            if (!this.isLoginMode) {
+                this.profileService.createProfile(response.localId, response.email);
+            }
+
             this.isLoading = false;
             this.router.navigate(['/books']);
         }, errorMessage => {

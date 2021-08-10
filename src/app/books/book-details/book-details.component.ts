@@ -28,7 +28,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
         private bookService: BookService,
         private route: ActivatedRoute,
         private router: Router,
-        private userService: ProfileService,
+        private profileService: ProfileService,
         private authService: AuthService,
     ) { }
 
@@ -57,7 +57,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     }
 
     onAddBook() {
-        this.userService.addBook(this.book);
+        this.profileService.addBook(this.book);
     }
 
     onEditBook() {
