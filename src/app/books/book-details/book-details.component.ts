@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { BookService } from '../book.service';
@@ -8,7 +7,7 @@ import { ProfileService } from 'src/app/profile/profile.service';
 
 import { Book } from '../book.model';
 import { AuthService } from 'src/app/auth/auth.service';
-import { BookQuote } from './book-quotes/book-quote.model';
+import { BookQuote } from './book-quote.model';
 
 @Component({
     selector: 'app-book-details',
@@ -49,7 +48,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
             if (!user) {
                 return;
             }
-            
+
             this.userId = user.id;
         });
     }
@@ -81,13 +80,15 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
         this.displayNewQuote = true;
     }
 
-    onSubmitQuote(form: NgForm) {
-        const value = form.value;
-        const newQuote = new BookQuote(value.quoteText, this.book.author);
-        this.book.quotes.push(newQuote);
-        this.bookService.addQuote(this.id, newQuote);
-        this.displayNewQuote = false;
-        form.reset();
+    onAddQuote(quote: string, author: string) {
+        const newQuote = new BookQuote(quote, author);
+        this.profileService.addQuote(newQuote);
+
+        this.infoText = 'Quote added to your profile!';
+
+        setTimeout(() => {
+            this.infoText = undefined!;
+        }, 2000);
     }
 
     get isOwner(): boolean {

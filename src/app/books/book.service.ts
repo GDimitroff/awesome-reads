@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 
-import { BookQuote } from './book-details/book-quotes/book-quote.model';
+import { BookQuote } from './book-details/book-quote.model';
 import { Book } from './book.model';
 import { map, tap } from 'rxjs/operators';
 
@@ -38,6 +38,15 @@ export class BookService {
             book = JSON.parse(localStorage.getItem('book')!);
         }
 
+        // if (!book) {
+        //     return this.http.get<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json')
+        //         .pipe(
+        //             tap(res => {
+        //                 book = res;
+        //                 return res;
+        //             }));
+        // }
+
         return book!;
     }
 
@@ -47,7 +56,7 @@ export class BookService {
                 tap(res => {
                     const id = Object.values(res)[0];
                     book.id = id;
-                    this.books.unshift(book);   
+                    this.books.unshift(book);
                     this.booksChanged.next(this.books.slice());
                     return res;
                 }));

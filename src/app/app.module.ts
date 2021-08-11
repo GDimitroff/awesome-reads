@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -21,7 +22,6 @@ import { BookDetailsComponent } from './books/book-details/book-details.componen
 import { BookItemComponent } from './books/book-list/book-item/book-item.component';
 import { BookStartComponent } from './books/book-start/book-start.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
-import { BookQuotes } from './books/book-details/book-quotes/book-quotes.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthComponent } from './auth/auth.component';
 import { Loading } from 'src/shared/loading/loading.component';
@@ -43,13 +43,13 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
         BookItemComponent,
         BookStartComponent,
         BookEditComponent,
-        BookQuotes,
         ProfileComponent,
         AuthComponent,
-        Loading
+        Loading,
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,

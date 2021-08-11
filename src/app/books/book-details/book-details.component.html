@@ -6,8 +6,6 @@
     </button>
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" style="cursor: pointer;" (click)="onAddBook()">Add to my books</a></li>
-        <li *ngIf="isOwner"><a class="dropdown-item" style="cursor: pointer;" (click)="onNewQuote()">Add new quote</a>
-        </li>
         <li *ngIf="isOwner"><a class="dropdown-item" style="cursor: pointer;" (click)="onEditBook()">Edit</a></li>
         <li *ngIf="isOwner"><a class="dropdown-item" style="cursor: pointer;" (click)="onDeleteBook()">Delete</a></li>
     </ul>
@@ -19,15 +17,32 @@
 <p class="card-text px-3">{{ book.description }}</p>
 <p>Pages: {{ book.pages }}</p>
 
-<app-book-quotes [book]="book" [isAuth]="isAuthenticated"></app-book-quotes>
-<div *ngIf="displayNewQuote">
-    <form (ngSubmit)="onSubmitQuote(f)" #f="ngForm" class="px-3">
-        <div class="form-floating mb-3">
-            <textarea class="form-control" id="quoteText" placeholder="quote" style="height: 100px" name="quoteText"
-                ngModel required>
-        </textarea>
-            <label for="quoteText">Enter new quote...</label>
+<h3>Quotes from this book</h3>
+<div *ngIf="infoText" class="alert alert-success">{{ infoText }}</div>
+<div class="row pt-2">
+    <div class="col-xs-12 px-3" *ngFor="let quote of book.quotes; let i = index">
+        <div class="row text-start px-3 py-2 align-items-center">
+            <div *ngIf="!isAuthenticated" class="col-md-12">
+                "{{ quote.quote }}"
+            </div>
+            <div *ngIf="isAuthenticated" class="col-md-10">
+                "{{ quote.quote }}"
+            </div>
+            <div class="col-md-2 text-center py-3" *ngIf="isAuthenticated">
+                <div class="col dropdown p-3">
+                    <button class="btn btn-outline-dark" type="button" data-bs-toggle="dropdown">
+                        &#x2699;
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" style="cursor: pointer;"
+                                (click)="onAddQuote(quote.quote, book.author)">Add to my quotes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-dark w-100" [disabled]="!f.valid">Add new quote to the book</button>
-    </form>
+        <hr>
+    </div>
 </div>

@@ -1,5 +1,5 @@
 import { Book } from "../books/book.model";
-import { BookQuote } from "../books/book-details/book-quotes/book-quote.model";
+import { BookQuote } from "../books/book-details/book-quote.model";
 
 export class Profile {
 

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Profile } from './profile.model';
 import { Book } from '../books/book.model';
-import { BookQuote } from '../books/book-details/book-quotes/book-quote.model';
+import { BookQuote } from '../books/book-details/book-quote.model';
 import { map } from 'rxjs/operators';
 
 @Injectable({

@@ -4,11 +4,18 @@ import { ProfileService } from './profile.service';
 import { Profile } from './profile.model';
 import { Book } from '../books/book.model';
 import { BookService } from '../books/book.service';
+import { fadeInAnimation } from '../_animations';
 
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.css']
+    styleUrls: ['./profile.component.css'],
+
+    // make slide in/out animation available to this component
+    animations: [fadeInAnimation],
+
+    // attach the slide in/out animation to the host (root) element of this component
+    host: { '[@fadeInAnimation]': '' }
 })
 export class ProfileComponent implements OnInit {
     books!: Book[];

@@ -1,4 +1,4 @@
-import { BookQuote } from "./book-details/book-quotes/book-quote.model";
+import { BookQuote } from "./book-details/book-quote.model";
 
 export class Book {
     public title: string;
