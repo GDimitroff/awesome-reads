@@ -13,6 +13,7 @@ import { BookQuote } from './book-quote.model';
 export class BookQuotes implements OnInit {
     @Input() book!: Book;
     @Input() isAuth!: boolean;
+    infoText!: string;
 
     constructor(private profileService: ProfileService) { }
 
@@ -23,5 +24,11 @@ export class BookQuotes implements OnInit {
     onAddQuote(quote: string, author: string) {
         const newQuote = new BookQuote(quote, author);
         this.profileService.addQuote(newQuote);
+
+        this.infoText = 'Quote added to your profile!';
+
+        setTimeout(() => {
+            this.infoText = undefined!;
+        }, 2000);
     }
 }

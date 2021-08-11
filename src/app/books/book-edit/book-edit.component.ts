@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { BookService } from '../book.service';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-book-edit',
@@ -89,7 +89,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
     private initForm() {
         let bookTitle = '';
         let bookAuthor = '';
-        let bookDesciption = '';
+        let bookDescription = '';
         let bookPages = 0;
         let bookImageUrl = '';
         let bookQuotes = new FormArray([]);
@@ -98,7 +98,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
             const book = this.bookService.getBook(this.id);
             bookTitle = book.title;
             bookAuthor = book.author;
-            bookDesciption = book.description;
+            bookDescription = book.description;
             bookPages = book.pages;
             bookImageUrl = book.imageUrl;
             if (book['quotes']) {
@@ -115,9 +115,9 @@ export class BookEditComponent implements OnInit, OnDestroy {
         this.bookForm = new FormGroup({
             'title': new FormControl(bookTitle, Validators.required),
             'author': new FormControl(bookAuthor, Validators.required),
-            'description': new FormControl(bookDesciption, Validators.required),
+            'description': new FormControl(bookDescription, Validators.required),
             'pages': new FormControl(bookPages, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
-            'imageUrl': new FormControl(bookImageUrl, Validators.required),
+            'imageUrl': new FormControl(bookImageUrl, [Validators.required, Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]),
             'quotes': bookQuotes
         });
     }

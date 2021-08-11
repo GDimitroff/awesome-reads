@@ -12,6 +12,7 @@
         <li *ngIf="isOwner"><a class="dropdown-item" style="cursor: pointer;" (click)="onDeleteBook()">Delete</a></li>
     </ul>
 </div>
+<div *ngIf="infoText" class="alert alert-success">{{ infoText }}</div>
 
 <h1>{{ book.title }}</h1>
 <p class="lead">{{ book.author }}</p>

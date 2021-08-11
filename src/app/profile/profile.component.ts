@@ -13,6 +13,7 @@ import { BookService } from '../books/book.service';
 export class ProfileComponent implements OnInit {
     books!: Book[];
     profile!: Profile;
+    infoText!: string;
 
     randomQuote!: string;
     randomQuotes: string[] = [
@@ -56,5 +57,11 @@ export class ProfileComponent implements OnInit {
     onDeleteBook(id: number) {
         this.profile.books.splice(id, 1);
         this.profileService.deleteBook(this.profile);
+
+        this.infoText = 'Book deleted from your profile.';
+
+        setTimeout(() => {
+            this.infoText = undefined!;
+        }, 2000);
     }
 }

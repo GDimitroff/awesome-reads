@@ -23,7 +23,7 @@ export class BookService {
                     }
                 }
 
-                this.books = books;
+                this.books = books.reverse();
                 this.booksChanged.next(this.books.slice());
                 return books;
             }));
@@ -47,7 +47,7 @@ export class BookService {
                 tap(res => {
                     const id = Object.values(res)[0];
                     book.id = id;
-                    this.books.push(book);
+                    this.books.unshift(book);   
                     this.booksChanged.next(this.books.slice());
                     return res;
                 }));

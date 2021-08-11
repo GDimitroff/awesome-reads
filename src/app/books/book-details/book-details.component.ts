@@ -20,6 +20,7 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     isAuthenticated: boolean = false;
     displayNewQuote: boolean = false;
     book: Book = {} as Book;
+    infoText!: string;
 
     userId!: string;
     ownerId!: string;
@@ -60,6 +61,11 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
 
     onAddBook() {
         this.profileService.addBook(this.book, this.id);
+        this.infoText = 'Book added to your profile!';
+
+        setTimeout(() => {
+            this.infoText = undefined!;
+        }, 2000);
     }
 
     onEditBook() {
