@@ -45,6 +45,10 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
 
         this.userSub = this.authService.user.subscribe(user => {
             this.isAuthenticated = !!user;
+            if (!user) {
+                return;
+            }
+            
             this.userId = user.id;
         });
     }

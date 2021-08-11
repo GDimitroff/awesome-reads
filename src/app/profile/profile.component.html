@@ -16,10 +16,10 @@
             </div>
         </div>
     </div>
-    <div class="container pt-5" *ngIf="profile && profile.books">
+    <div class="container pt-5" *ngIf="profile">
         <h1 class="text-center pt-1 py-2">My favorite books</h1>
         <hr class="style-eight">
-        <div class="row text-start align-items-center pt-2">
+        <div class="row text-start align-items-center pt-2" *ngIf="profile.books">
             <div class="col-md-6 text-center" *ngFor="let book of profile.books; let i = index">
                 <div routerLink="/books/{{book.id}}" routerLinkActive="active"
                     class="row g-0 border rounded overflow-hidden flex-md-row  mb-2 shadow-sm h-md-250 position-relative"
