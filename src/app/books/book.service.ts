@@ -38,15 +38,6 @@ export class BookService {
             book = JSON.parse(localStorage.getItem('book')!);
         }
 
-        // if (!book) {
-        //     return this.http.get<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json')
-        //         .pipe(
-        //             tap(res => {
-        //                 book = res;
-        //                 return res;
-        //             }));
-        // }
-
         return book!;
     }
 
@@ -81,11 +72,11 @@ export class BookService {
         this.booksChanged.next(this.books.slice());
     }
 
-    addQuote(id: string, quote: BookQuote): void {
-        const book = this.books.find(book => book.id === id);
-        book!.quotes.push(quote);
-        this.booksChanged.next(this.books.slice());
+    // addQuote(id: string, quote: BookQuote): void {
+    //     const book = this.books.find(book => book.id === id);
+    //     book!.quotes.push(quote);
+    //     this.booksChanged.next(this.books.slice());
 
-        this.http.put<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json', book).subscribe();
-    }
+    //     this.http.put<Book>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/books/' + id + '.json', book).subscribe();
+    // }
 }

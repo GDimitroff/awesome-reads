@@ -9,6 +9,7 @@ import { Book } from '../book.model';
 import { AuthService } from 'src/app/auth/auth.service';
 import { BookQuote } from './book-quote.model';
 
+
 @Component({
     selector: 'app-book-details',
     templateUrl: './book-details.component.html',
@@ -19,7 +20,8 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     isAuthenticated: boolean = false;
     displayNewQuote: boolean = false;
     book: Book = {} as Book;
-    infoText!: string;
+    infoTextBook!: string;
+    infoTextQuote!: string;
 
     userId!: string;
     ownerId!: string;
@@ -60,10 +62,10 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
 
     onAddBook() {
         this.profileService.addBook(this.book, this.id);
-        this.infoText = 'Book added to your profile!';
+        this.infoTextBook = 'Book added to your profile!';
 
         setTimeout(() => {
-            this.infoText = undefined!;
+            this.infoTextBook = undefined!;
         }, 2000);
     }
 
@@ -84,10 +86,10 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
         const newQuote = new BookQuote(quote, author);
         this.profileService.addQuote(newQuote);
 
-        this.infoText = 'Quote added to your profile!';
+        this.infoTextQuote = 'Quote added to your profile!';
 
         setTimeout(() => {
-            this.infoText = undefined!;
+            this.infoTextQuote = undefined!;
         }, 2000);
     }
 

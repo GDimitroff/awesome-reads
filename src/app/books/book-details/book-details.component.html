@@ -10,7 +10,7 @@
         <li *ngIf="isOwner"><a class="dropdown-item" style="cursor: pointer;" (click)="onDeleteBook()">Delete</a></li>
     </ul>
 </div>
-<div *ngIf="infoText" class="alert alert-success">{{ infoText }}</div>
+<div *ngIf="infoTextBook" class="alert alert-success">{{ infoTextBook }}</div>
 
 <h1>{{ book.title }}</h1>
 <p class="lead">{{ book.author }}</p>
@@ -18,7 +18,7 @@
 <p>Pages: {{ book.pages }}</p>
 
 <h3>Quotes from this book</h3>
-<div *ngIf="infoText" class="alert alert-success">{{ infoText }}</div>
+<div *ngIf="infoTextQuote" class="alert alert-success">{{ infoTextQuote }}</div>
 <div class="row pt-2">
     <div class="col-xs-12 px-3" *ngFor="let quote of book.quotes; let i = index">
         <div class="row text-start px-3 py-2 align-items-center">

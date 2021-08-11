@@ -4,23 +4,17 @@ import { ProfileService } from './profile.service';
 import { Profile } from './profile.model';
 import { Book } from '../books/book.model';
 import { BookService } from '../books/book.service';
-import { fadeInAnimation } from '../_animations';
 
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.css'],
-
-    // make slide in/out animation available to this component
-    animations: [fadeInAnimation],
-
-    // attach the slide in/out animation to the host (root) element of this component
-    host: { '[@fadeInAnimation]': '' }
+    styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
     books!: Book[];
     profile!: Profile;
-    infoText!: string;
+    infoTextBook!: string;
+    infoTextQuote!: string;
 
     randomQuote!: string;
     randomQuotes: string[] = [
@@ -65,10 +59,10 @@ export class ProfileComponent implements OnInit {
         this.profile.books.splice(id, 1);
         this.profileService.deleteBook(this.profile);
 
-        this.infoText = 'Book deleted from your profile.';
+        this.infoTextBook = 'Book deleted from your profile.';
 
         setTimeout(() => {
-            this.infoText = undefined!;
+            this.infoTextBook = undefined!;
         }, 2000);
     }
 
@@ -76,10 +70,10 @@ export class ProfileComponent implements OnInit {
         this.profile.quotes.splice(id, 1);
         this.profileService.deleteQuote(this.profile);
 
-        this.infoText = 'Quote deleted from your profile.';
+        this.infoTextQuote = 'Quote deleted from your profile.';
 
         setTimeout(() => {
-            this.infoText = undefined!;
+            this.infoTextQuote = undefined!;
         }, 2000);
     }
 }

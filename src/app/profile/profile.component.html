@@ -18,7 +18,7 @@
     </div>
     <div class="container pt-5" *ngIf="profile && profile.books">
         <h1 class="text-center pt-1 py-2">My favorite books</h1>
-        <div *ngIf="infoText" class="alert alert-danger text-center">{{ infoText }}</div>
+        <div *ngIf="infoTextBook" class="alert alert-danger text-center">{{ infoTextBook }}</div>
         <hr class="style-eight">
         <div class="row text-start align-items-center pt-2" *ngIf="profile.books">
             <div class="col-md-6 text-center" *ngFor="let book of profile.books; let i = index">
@@ -42,7 +42,7 @@
     </div>
     <div class="container pt-5" *ngIf="profile && profile.quotes">
         <h1 class="text-center pt-1 pt-3">My favorite quotes</h1>
-        <div *ngIf="infoText" class="alert alert-danger text-center">{{ infoText }}</div>
+        <div *ngIf="infoTextQuote" class="alert alert-danger text-center">{{ infoTextQuote }}</div>
         <hr class="style-eight">
         <div class="row text-center align-items-center" *ngFor="let quote of profile.quotes; let i = index">
             <div class="col-md-11 text center">
