@@ -64,4 +64,15 @@ export class ProfileComponent implements OnInit {
             this.infoText = undefined!;
         }, 2000);
     }
+
+    onDeleteQuote(id: number) {
+        this.profile.quotes.splice(id, 1);
+        this.profileService.deleteQuote(this.profile);
+
+        this.infoText = 'Quote deleted from your profile.';
+
+        setTimeout(() => {
+            this.infoText = undefined!;
+        }, 2000);
+    }
 }

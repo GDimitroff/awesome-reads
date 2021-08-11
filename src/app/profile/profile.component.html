@@ -42,11 +42,15 @@
     </div>
     <div class="container pt-5" *ngIf="profile && profile.quotes">
         <h1 class="text-center pt-1 pt-3">My favorite quotes</h1>
+        <div *ngIf="infoText" class="alert alert-danger text-center">{{ infoText }}</div>
         <hr class="style-eight">
-        <div class="row text-center" *ngFor="let quote of profile.quotes">
-            <div class="col-md-12 text center">
+        <div class="row text-center align-items-center" *ngFor="let quote of profile.quotes; let i = index">
+            <div class="col-md-11 text center">
                 "{{ quote.quote }}"
-                <p class="lead py-2">{{ quote.author }}</p>
+                <p class="lead">{{ quote.author }}</p>
+            </div>
+            <div class="col-md-1 pb-3">
+                <a class="btn btn-outline-danger" style="font-weight: bold;" (click)="onDeleteQuote(i)">X</a>
             </div>
             <hr>
         </div>

@@ -26,7 +26,7 @@ export class ProfileService {
     getFirebaseUserProfile(id: string) {
         this.http.get<Profile[]>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/users.json')
             .subscribe(profiles => {
-                
+
                 let firebaseUserId = undefined;
                 const profilesArray = Object.entries(profiles);
                 for (let key in profilesArray) {
@@ -54,7 +54,7 @@ export class ProfileService {
                 })
             )
             .subscribe(profileData => {
-                book['id'] = id; 
+                book['id'] = id;
                 profileData.books.push(book);
 
                 this.http.put<Profile>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/users/' + firebaseId + '.json', profileData)
@@ -81,6 +81,11 @@ export class ProfileService {
     }
 
     deleteBook(profile: Profile) {
+        const firebaseId = localStorage.getItem('firebaseUserId');
+        this.http.put<Profile>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/users/' + firebaseId + '.json', profile).subscribe();
+    }
+
+    deleteQuote(profile: Profile) {
         const firebaseId = localStorage.getItem('firebaseUserId');
         this.http.put<Profile>('https://awesome-reads-default-rtdb.europe-west1.firebasedatabase.app/users/' + firebaseId + '.json', profile).subscribe();
     }

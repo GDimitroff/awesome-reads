@@ -7,6 +7,6 @@
     <div class="col-md-9 p-3 d-flex flex-column position-static">
         <h3>{{ book.title }}</h3>
         <strong class="d-inline-block mb-2 text-dark">{{ book.author }}</strong>
-        <p class="card-text mb-auto">{{ book.description.slice(0, 150) }}</p>
+        <p class="card-text mb-auto">{{ book.description.slice(0, 150) + '...' }}</p>
     </div>
 </div>
