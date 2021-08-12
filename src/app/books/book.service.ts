@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 
-import { BookQuote } from './book-details/book-quote.model';
 import { Book } from './book.model';
 import { map, tap } from 'rxjs/operators';
 

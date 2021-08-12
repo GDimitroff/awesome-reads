@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { AuthResponseData, AuthService } from './auth.service';
     templateUrl: './auth.component.html',
     styleUrls: ['./auth.component.html']
 })
-export class AuthComponent implements OnInit, OnDestroy {
+export class AuthComponent implements OnInit {
     private userSub!: Subscription;
     isAuthenticated: boolean = false;
     isLoginMode: boolean = true;
@@ -27,10 +27,6 @@ export class AuthComponent implements OnInit, OnDestroy {
                 this.router.navigate(['/books']);
             } 
         });
-    }
-
-    ngOnDestroy() {
-        this.userSub.unsubscribe();
     }
 
     onSwitchMode() {
