@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
+import { BooksModule } from './books/books.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { BookService } from './books/book.service';
@@ -16,12 +17,6 @@ import { HomeComponent } from './home/home.component';
 import { ShowcaseComponent } from './home/showcase/showcase.component';
 import { BoxesComponent } from './home/boxes/boxes.component';
 import { SectionsComponent } from './home/sections/sections.component';
-import { BooksComponent } from './books/books.component';
-import { BookListComponent } from './books/book-list/book-list.component';
-import { BookDetailsComponent } from './books/book-details/book-details.component';
-import { BookItemComponent } from './books/book-list/book-item/book-item.component';
-import { BookStartComponent } from './books/book-start/book-start.component';
-import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthComponent } from './auth/auth.component';
 import { Loading } from 'src/app/shared/loading/loading.component';
@@ -38,12 +33,6 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
         ShowcaseComponent,
         BoxesComponent,
         SectionsComponent,
-        BooksComponent,
-        BookListComponent,
-        BookDetailsComponent,
-        BookItemComponent,
-        BookStartComponent,
-        BookEditComponent,
         ProfileComponent,
         AuthComponent,
         Loading,
@@ -56,7 +45,8 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
         ReactiveFormsModule,
         HttpClientModule,
         FontAwesomeModule,
-        AppRoutingModule
+        AppRoutingModule,
+        BooksModule
     ],
     providers: [
         BookService,

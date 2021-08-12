@@ -117,7 +117,7 @@ export class BookEditComponent implements OnInit, OnDestroy {
             'author': new FormControl(bookAuthor, Validators.required),
             'description': new FormControl(bookDescription, Validators.required),
             'pages': new FormControl(bookPages, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
-            'imageUrl': new FormControl(bookImageUrl, [Validators.required, Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]),
+            'imageUrl': new FormControl(bookImageUrl, [Validators.required, Validators.pattern(/(http(s?):)([/|.|\w|+|\s|-])*\.(?:jpg|gif|png)/)]),
             'quotes': bookQuotes
         });
     }
