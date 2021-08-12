@@ -45,11 +45,6 @@ export class AuthComponent implements OnInit {
         if (password !== repeatPassword && !this.isLoginMode) {
             this.error = 'Passwords don\'t match!';
             form.reset();
-
-            setTimeout(() => {
-                this.error = null!;
-            }, 2000);
-
             return;
         }
 
@@ -74,12 +69,12 @@ export class AuthComponent implements OnInit {
         }, errorMessage => {
             this.error = errorMessage;
             this.isLoading = false;
-
-            setTimeout(() => {
-                this.error = null!;
-            }, 2000);
         });
 
         form.reset();
+    }
+
+    onHandleError() {
+        this.error = null!;
     }
 }

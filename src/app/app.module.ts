@@ -24,7 +24,8 @@ import { BookStartComponent } from './books/book-start/book-start.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthComponent } from './auth/auth.component';
-import { Loading } from 'src/shared/loading/loading.component';
+import { Loading } from 'src/app/shared/loading/loading.component';
+import { AlertComponent } from './shared/alert/alert.component';
 
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
@@ -46,6 +47,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
         ProfileComponent,
         AuthComponent,
         Loading,
+        AlertComponent
     ],
     imports: [
         BrowserModule,
