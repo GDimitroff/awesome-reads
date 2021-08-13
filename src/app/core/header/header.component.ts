@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
     selector: 'app-header',

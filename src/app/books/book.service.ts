@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-
-import { Book } from './book.model';
 import { map, tap } from 'rxjs/operators';
 
-@Injectable()
+import { Book } from './book.model';
+
+@Injectable({
+    providedIn: 'root'
+})
 export class BookService {
     booksChanged = new Subject<Book[]>();
     private books: Book[] = [] as Book[];

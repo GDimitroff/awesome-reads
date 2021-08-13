@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BooksRoutingModule } from './books-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { BooksComponent } from './books.component';
 import { BookListComponent } from './book-list/book-list.component';
@@ -21,10 +21,10 @@ import { BookEditComponent } from './book-edit/book-edit.component';
         BookEditComponent
     ],
     imports: [
-        CommonModule,
         RouterModule,
         ReactiveFormsModule,
-        BooksRoutingModule
+        BooksRoutingModule,
+        SharedModule
     ]
 })
 export class BooksModule { }
