@@ -34,9 +34,10 @@ export class BookService {
         let book = this.books.find(book => book.id == id);
 
         if (book) {
-            localStorage.setItem('book', JSON.stringify(book));
+            localStorage.setItem('books', JSON.stringify(this.books));
         } else {
-            book = JSON.parse(localStorage.getItem('book')!);
+            this.books = JSON.parse(localStorage.getItem('books')!);
+            book = this.books.find(book => book.id == id);
         }
 
         return book!;

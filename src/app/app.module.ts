@@ -8,20 +8,22 @@ import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 
 import { AppComponent } from './app.component';
+import { NotFound } from './notFound/not-found.component';
 
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        NotFound
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
-        AppRoutingModule,
         CoreModule,
-        HomeModule   
+        HomeModule,
+        AppRoutingModule
     ],
     providers: [
         {
