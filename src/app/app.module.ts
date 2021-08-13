@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { NotFound } from './notFound/not-found.component';
 
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
         HttpClientModule,
         CoreModule,
         HomeModule,
-        AppRoutingModule
+        AppRoutingModule,
+        BrowserAnimationsModule
     ],
     providers: [
         {

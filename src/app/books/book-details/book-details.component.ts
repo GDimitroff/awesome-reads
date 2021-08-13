@@ -8,12 +8,14 @@ import { ProfileService } from 'src/app/profile/profile.service';
 import { Book } from '../book.model';
 import { AuthService } from 'src/app/auth/auth.service';
 import { BookQuote } from './book-quote.model';
-
+import { fadeInAnimation } from 'src/app/animations';
 
 @Component({
     selector: 'app-book-details',
     templateUrl: './book-details.component.html',
-    styleUrls: ['./book-details.component.css']
+    styleUrls: ['./book-details.component.css'],
+    animations: [fadeInAnimation],
+    host: { '[@fadeInAnimation]': '' }
 })
 export class BookDetailsComponent implements OnInit, OnDestroy {
     private userSub!: Subscription;

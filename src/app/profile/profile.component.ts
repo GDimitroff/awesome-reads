@@ -18,7 +18,6 @@ export class ProfileComponent implements OnInit {
     profile!: Profile;
     infoTextBook!: string;
     infoTextQuote!: string;
-    isLoading: boolean = false;
 
     randomQuote!: string;
     randomQuotes: string[] = [
@@ -42,7 +41,6 @@ export class ProfileComponent implements OnInit {
     constructor(private profileService: ProfileService, private bookService: BookService) { }
 
     ngOnInit(): void {
-        this.isLoading = true;
         const firebaseId = localStorage.getItem('firebaseUserId');
         this.profileService.getProfile(firebaseId!).subscribe(profile => {
             this.profile = profile;
@@ -50,7 +48,6 @@ export class ProfileComponent implements OnInit {
 
         this.bookService.getBooks().subscribe(books => {
             this.books = books;
-            this.isLoading = false;
         });
 
         this.onGenerateNewQuote();

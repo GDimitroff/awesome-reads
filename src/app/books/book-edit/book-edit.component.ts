@@ -5,11 +5,14 @@ import { Subscription } from 'rxjs';
 
 import { BookService } from '../book.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { fadeInAnimation } from 'src/app/animations';
 
 @Component({
     selector: 'app-book-edit',
     templateUrl: './book-edit.component.html',
-    styleUrls: ['./book-edit.component.css']
+    styleUrls: ['./book-edit.component.css'],
+    animations: [fadeInAnimation],
+    host: { '[@fadeInAnimation]': '' }
 })
 export class BookEditComponent implements OnInit, OnDestroy {
     private userSub!: Subscription;
