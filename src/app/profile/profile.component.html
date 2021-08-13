@@ -1,6 +1,9 @@
 <section class="p-5">
     <div class="container">
-        <div *ngIf="profile">
+        <div *ngIf="isLoading" class="text-center py-3">
+            <app-loading></app-loading>
+        </div>
+        <div *ngIf="profile && !isLoading">
             <div class="row text-center">
                 <div class="col-md-6 pt-5">
                     <h2>Welcome, {{ profile.email }}!</h2>
@@ -16,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="container pt-5" *ngIf="profile && profile.books">
+    <div class="container pt-5" *ngIf="profile && profile.books && !isLoading">
         <h1 class="text-center pt-1 py-2">My favorite books</h1>
         <div *ngIf="infoTextBook" class="alert alert-danger text-center">{{ infoTextBook }}</div>
         <hr class="style-eight">

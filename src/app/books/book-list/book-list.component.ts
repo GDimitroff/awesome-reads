@@ -13,12 +13,15 @@ import { Subscription } from 'rxjs';
 export class BookListComponent implements OnInit, OnDestroy {
     books: Book[] = [] as Book[];
     private booksSub!: Subscription;
+    isLoading = false;
 
     constructor(private bookService: BookService) { }
 
     ngOnInit(): void {
+        this.isLoading = true;
         this.bookService.getBooks().subscribe(books => {
             this.books = books;
+            this.isLoading = false;
         });
 
         this.booksSub = this.bookService.booksChanged.subscribe(books => {

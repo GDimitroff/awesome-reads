@@ -4,7 +4,6 @@
             <div class="col-xs-12 col-md-6 offset-md-3">
                 <h2>{{ isLoginMode ? 'Sign in' : 'Register new account'}}</h2>
                 <hr>
-                <!-- <div *ngIf="error" class="alert alert-danger">{{ error }}</div> -->
                 <app-alert *ngIf="error" [message]="error" (close)="onHandleError()"></app-alert>
                 <div *ngIf="isLoading" class="text-center py-3">
                     <app-loading></app-loading>

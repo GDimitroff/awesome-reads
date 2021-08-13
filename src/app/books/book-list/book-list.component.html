@@ -1,1 +1,6 @@
-<app-book-item *ngFor="let b of books" [book]="b"></app-book-item>
+<div *ngIf="isLoading" class="text-center py-3">
+    <app-loading></app-loading>
+</div>
+<div *ngIf="!isLoading">
+    <app-book-item *ngFor="let b of books" [book]="b"></app-book-item>
+</div>
