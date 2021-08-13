@@ -6,9 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
-import { BooksModule } from './books/books.module';
-import { AuthModule } from './auth/auth.module';
-import { ProfileModule } from './profile/profile.module';
 
 import { AppComponent } from './app.component';
 
@@ -24,10 +21,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
         HttpClientModule,
         AppRoutingModule,
         CoreModule,
-        HomeModule,
-        BooksModule,
-        AuthModule,
-        ProfileModule
+        HomeModule   
     ],
     providers: [
         {

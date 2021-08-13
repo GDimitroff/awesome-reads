@@ -12,7 +12,7 @@ import { ProfileComponent } from './profile.component';
     imports: [
         RouterModule.forChild([
             {
-                path: 'profile',
+                path: '',
                 component: ProfileComponent,
                 canActivate: [AuthGuard]
             }

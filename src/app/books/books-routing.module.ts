@@ -10,7 +10,7 @@ import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
     {
-        path: 'books',
+        path: '',
         component: BooksComponent,
         children: [
             {
