@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { fadeInAnimation } from '../_animations/index';
+import { fadeInAnimation } from '../animations';
 
 @Component({
     selector: 'app-home',

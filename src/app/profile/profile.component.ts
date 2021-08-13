@@ -4,11 +4,14 @@ import { ProfileService } from './profile.service';
 import { Profile } from './profile.model';
 import { Book } from '../books/book.model';
 import { BookService } from '../books/book.service';
+import { fadeInAnimation } from '../animations';
 
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.css']
+    styleUrls: ['./profile.component.css'],
+    animations: [fadeInAnimation],
+    host: { '[@fadeInAnimation]': '' }
 })
 export class ProfileComponent implements OnInit {
     books!: Book[];
