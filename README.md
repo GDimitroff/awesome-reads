@@ -1,27 +1,42 @@
-# Awesomereads
+# Awesomereads - For the love of books
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.2.
+This project was generated with Angular CLI version 12.1.2. Live demo can be found here: https://awesome-reads.web.app/home
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Functionality overview
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The example application is a social site for books (i.e. a very simple Goodreads clone) called "Awesomereads"(so original, I know). It uses a Firebase as backend
 
-## Running end-to-end tests
+**General functionality:**
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Authenticate users via Firebase
+- CRU* users (sign up & settings page - no deleting required)
+- CRUD Books and Quotes
+- GET and display paginated lists of books. No authentication required for GET.
+- Personal profile page with added favorite books and quotes. 
 
-## Further help
+**The general page breakdown looks like this:**
+- Home page (URL: /#/ )
+    - Showcase and landing page
+- Books page (URL: /#/books/books-slug-here )
+    - Dynamic view with list of all books on the left and details page for the book on the right
+    - Clicking add new book or edit already added one renders new dynamic view on the right side of the page
+    - Delete and edit book button (only shown to book's author)
+- Sign in/Sign up pages (URL: /#/auth)
+    - Store the token in localStorage
+    - Single page for login/register page with dynamic switch mode
+- Profile page (URL: /#/profile)
+    - Show basic user info
+    - List of books populated from author's favorite books
+    - List of quotes populated from author's favorite quotes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Technologies
+- Angular, TypeScript, Bootstrap 5, HTML, CSS
+- RxJs, FontAwesome, Angular Animations
